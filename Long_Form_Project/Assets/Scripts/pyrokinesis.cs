@@ -12,7 +12,7 @@ public class pyrokinesis : MonoBehaviour
     public float delay = 3f;
 
     float countdown;
-    bool hasExploded = false;
+    bool boomTime = false;
 
     public float explosionForce = 700f;
     public float radius;
@@ -48,18 +48,23 @@ public class pyrokinesis : MonoBehaviour
     void Update()
     {
         countdown -= Time.deltaTime;
-        if (countdown <= 0f && !hasExploded)
+        if (countdown <= 0f && !boomTime)
         {
             //Explode();
-            hasExploded = true;
+          //  boomTime = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+
+        {
+            boomTime = true ;
         }
 
 
-
-        Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, placemntDistance, ground))
+        if (Physics.Raycast(ray, out hit, placemntDistance, ground) && boomTime)
         {
            
             displaySphere.transform.position = hit.point;
@@ -73,7 +78,7 @@ public class pyrokinesis : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Explode();
-                hasExploded=true;
+               // boomTime=true;
                // Instantiate(grenadePrefab, hit.point, Quaternion.identity);
             }
         }
@@ -96,9 +101,10 @@ public class pyrokinesis : MonoBehaviour
             foreach (Collider nearbyObject in colliders)
             {
                 Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
-                if (rb != null)
+                if (rb != null && boomTime )
                 {
                     rb.AddExplosionForce(explosionForce, hit.point, radius);
+                    boomTime = false;
                 }
 
             }
