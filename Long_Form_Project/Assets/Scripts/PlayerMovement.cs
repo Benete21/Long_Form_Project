@@ -44,6 +44,13 @@ public class PlayerMovement : MonoBehaviour {
     //Sliding
     private Vector3 normalVector = Vector3.up;
     private Vector3 wallNormalVector;
+    
+    // --- Wall Jump Variables ---
+    public float wallCheckDistance = 0.6f;
+    public float wallJumpUpForce = 8f;
+    public float wallJumpSideForce = 6f;
+    private bool isWallRunning;
+    private RaycastHit wallHit;
 
     void Awake() {
         rb = GetComponent<Rigidbody>();
@@ -63,11 +70,49 @@ public class PlayerMovement : MonoBehaviour {
     private void Update() {
         MyInput();
         Look();
+        
+        // Wall jump check
+        CheckForWall();
+        if (jumping && !grounded && isWallRunning && readyToJump)
+        {
+            WallJump();
+        }
     }
 
     /// <summary>
     /// Find user input. Should put this in its own class but im lazy
     /// </summary>
+    
+    private void CheckForWall()
+    {
+        isWallRunning = false;
+
+        // Cast to the left and right of the player to detect walls
+        if (Physics.Raycast(transform.position, orientation.right, out wallHit, wallCheckDistance))
+        {
+            isWallRunning = true;
+        }
+        else if (Physics.Raycast(transform.position, -orientation.right, out wallHit, wallCheckDistance))
+        {
+            isWallRunning = true;
+        }
+    }
+    
+    private void WallJump()
+    {
+        readyToJump = false;
+
+        // Reset velocity before applying new jump
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        // Calculate jump direction: away from the wall + upwards
+        Vector3 jumpDirection = wallHit.normal * wallJumpSideForce + Vector3.up * wallJumpUpForce;
+
+        rb.AddForce(jumpDirection, ForceMode.Impulse);
+
+        Invoke(nameof(ResetJump), jumpCooldown);
+    }
+    
     private void MyInput() {
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
