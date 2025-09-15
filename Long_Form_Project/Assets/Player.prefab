@@ -300,6 +300,9 @@ MonoBehaviour:
   slideForce: 400
   slideCounterMovement: 0.2
   jumpForce: 305.1
+  wallCheckDistance: 0.6
+  wallJumpUpForce: 8
+  wallJumpSideForce: 6
 --- !u!1 &3325755605019944468
 GameObject:
   m_ObjectHideFlags: 0
