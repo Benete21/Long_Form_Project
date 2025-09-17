@@ -13,5 +13,11 @@ public class Moving_Object_Stop : MonoBehaviour
     {
         animator.enabled = false;
         animator.GetInteger(1);
+        StartCoroutine(StartAnimation());
+    }
+    public IEnumerator StartAnimation()
+    {
+        animator.GetInteger(0);
+        yield return null;
     }
 }
