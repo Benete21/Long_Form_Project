@@ -23,11 +23,11 @@ public class Glue_Gun : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && shotsRemaining > 0 && !isReloading)
-        {
-            Shoot();
-            UpdateAmmoUI();
-        }
+            if (Input.GetButtonDown("Fire1") && shotsRemaining > 0 && !isReloading)
+            {
+                Shoot();
+                UpdateAmmoUI();
+            }
     }
 
     void Shoot()
