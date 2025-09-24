@@ -7,6 +7,6 @@ public class Laser_Target : MonoBehaviour
     public void Hit()
     {
         print("AAHAHAHAHAHAAJ");
-
+       
     }
 }
