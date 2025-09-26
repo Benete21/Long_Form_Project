@@ -67,6 +67,10 @@ public class Laser_Reflect_Mirror : MonoBehaviour
 
             CastRay(pos, dir, laser);
         }
+        else if (hitinfo.collider.gameObject.CompareTag("LaserButton"))
+        {
+            print("ajfgdfwqwdgmfndbsgehrjdtgmnfbdgehrdjfgmcnvbdgdf");
+        }
         else
         {
             laserIndices.Add(hitinfo.point);
