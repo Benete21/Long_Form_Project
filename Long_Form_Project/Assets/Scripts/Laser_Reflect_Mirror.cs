@@ -37,8 +37,7 @@ public class Laser_Reflect_Mirror : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit, 30, 1))
         {
-            laserIndices.Add(hit.point);
-            UpdateLaser();
+            CheckHit(hit, dir, laser);
         }
         else
         {
@@ -56,6 +55,22 @@ public class Laser_Reflect_Mirror : MonoBehaviour
         {
             laser.SetPosition(count, idx);
             count++;
+        }
+    }
+
+    void CheckHit(RaycastHit hitinfo, Vector3 direction, LineRenderer laser)
+    {
+        if (hitinfo.collider.gameObject.CompareTag("Mirror"))
+        {
+            Vector3 pos = hitinfo.point;
+            Vector3 dir = Vector3.Reflect(direction, hitinfo.normal);
+
+            CastRay(pos, dir, laser);
+        }
+        else
+        {
+            laserIndices.Add(hitinfo.point);
+            UpdateLaser();
         }
     }
 }
