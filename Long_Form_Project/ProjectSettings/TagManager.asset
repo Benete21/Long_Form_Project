@@ -6,7 +6,8 @@ TagManager:
   tags:
   - Sticky
   - Moving_Object
-  - Audio
+  - Mirror
+  - LaserButton
   layers:
   - Default
   - TransparentFX
