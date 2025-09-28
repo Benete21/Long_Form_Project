@@ -10,10 +10,9 @@ public class OpenUI : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (uiPanel == null)
+            if (uiPanel != null)
             {
                 uiPanel.SetActive(true);
-                Debug.Log("CONTACT!");
             }
         }
     }

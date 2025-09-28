@@ -52,8 +52,11 @@ public class PlayerMovement : MonoBehaviour {
     private bool isWallRunning;
     private RaycastHit wallHit;
 
+    AudioManager audioManager;
+
     void Awake() {
         rb = GetComponent<Rigidbody>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     
     void Start() {
@@ -203,6 +206,8 @@ public class PlayerMovement : MonoBehaviour {
                 rb.velocity = new Vector3(vel.x, vel.y / 2, vel.z);
             
             Invoke(nameof(ResetJump), jumpCooldown);
+
+            audioManager.PlaySFX(audioManager.Jump);
         }
     }
     
