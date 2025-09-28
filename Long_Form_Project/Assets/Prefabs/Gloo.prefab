@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3678741386570559741}
   - component: {fileID: -3763141434545793494}
   - component: {fileID: 3466661831696631276}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gloo
   m_TagString: Sticky
   m_Icon: {fileID: 0}

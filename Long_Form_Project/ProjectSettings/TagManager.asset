@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Sticky
-  - PyroBall
-  - Psi-Blast
+  - Moving_Object
+  - Mirror
+  - LaserButton
   layers:
   - Default
   - TransparentFX
