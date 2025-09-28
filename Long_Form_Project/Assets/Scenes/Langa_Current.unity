@@ -2579,16 +2579,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2395285350926890403, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1756074285}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c639797cd310364a8d54518432304b9, type: 3}
---- !u!1 &746075624 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2395285350926890403, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-  m_PrefabInstance: {fileID: 746075623}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &785633381
 GameObject:
   m_ObjectHideFlags: 0
@@ -6089,11 +6081,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e237582ea6fda4947884e8bec3fadecf, type: 3}
---- !u!20 &1652617639 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 7514735074246494252, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-  m_PrefabInstance: {fileID: 746075623}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1652617642 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2095278735184757879, guid: 8c639797cd310364a8d54518432304b9, type: 3}
@@ -6586,32 +6573,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747036303}
   m_CullTransparentMesh: 1
---- !u!114 &1756074285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 746075624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6acb22677c05e1408864c9a4e7e7be9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 5000
-  explosionForce: 700
-  radius: 3
-  fractured: {fileID: 0}
-  pyroBall: {fileID: 0}
-  Camera: {fileID: 1652617639}
-  grenadePrefab: {fileID: 8407131024704683109, guid: 27b22c95397b8a94682331defa386c26, type: 3}
-  displaySphere: {fileID: 0}
-  ground:
-    serializedVersion: 2
-    m_Bits: 8
-  placemntDistance: 5
-  explosionEffect: {fileID: 4084614488232734400, guid: b97a91d2c7301934d9eb32d4837ca5e5, type: 3}
-  explosionEffectPrefab: {fileID: 0}
 --- !u!1001 &1774329161
 PrefabInstance:
   m_ObjectHideFlags: 0
