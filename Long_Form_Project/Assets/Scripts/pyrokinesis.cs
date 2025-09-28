@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UIElements;
 
 public class pyrokinesis : MonoBehaviour
 {
@@ -16,6 +18,9 @@ public class pyrokinesis : MonoBehaviour
 
     public float explosionForce = 700f;
     public float radius;
+
+    public GameObject fractured;
+    public GameObject pyroBall;
 
     #endregion
     //_____________________________________________________________________________________________________________
@@ -86,17 +91,20 @@ public class pyrokinesis : MonoBehaviour
         {
            
             displaySphere.SetActive(false);
+            displaySphere.transform.Rotate(Vector3.right * 5 * Time.deltaTime);
         }
 
         void Explode()
         {
 
             Instantiate(explosionEffect, hit.point, hit.transform.rotation);
-
+          
             //explosionEffectPrefab.Play();
 
 
             Collider[] colliders = Physics.OverlapSphere(hit.point, radius);
+
+
 
             foreach (Collider nearbyObject in colliders)
             {
@@ -105,6 +113,12 @@ public class pyrokinesis : MonoBehaviour
                 {
                     rb.AddExplosionForce(explosionForce, hit.point, radius);
                     boomTime = false;
+                }
+
+                BreakScript breakable = nearbyObject.GetComponent<BreakScript>();
+                if (breakable != null)
+                {
+                    breakable.BreakIt();
                 }
 
             }
