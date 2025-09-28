@@ -7,6 +7,9 @@ TagManager:
   - Sticky
   - PyroBall
   - Psi-Blast
+  - Mirror
+  - LaserButton
+  - Audio
   layers:
   - Default
   - TransparentFX

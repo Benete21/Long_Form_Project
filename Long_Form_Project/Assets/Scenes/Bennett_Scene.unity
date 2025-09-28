@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 72658277}
   m_Layer: 0
   m_Name: MovingWall (1)
-  m_TagString: Moving_Object
+  m_TagString: PyroBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5849,6 +5849,8 @@ MonoBehaviour:
   delay: 5000
   explosionForce: 700
   radius: 3
+  fractured: {fileID: 0}
+  pyroBall: {fileID: 0}
   Camera: {fileID: 758014981}
   grenadePrefab: {fileID: 8407131024704683109, guid: 27b22c95397b8a94682331defa386c26, type: 3}
   displaySphere: {fileID: 195528032}
