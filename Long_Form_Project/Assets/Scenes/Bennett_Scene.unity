@@ -4050,7 +4050,7 @@ GameObject:
   - component: {fileID: 1112560711}
   m_Layer: 0
   m_Name: Audio Manager
-  m_TagString: Untagged
+  m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4069,10 +4069,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 603880609}
   SFXSource: {fileID: 1196808851}
-  background: {fileID: 0}
-  Jump: {fileID: 0}
-  grapple: {fileID: 0}
-  hitObstacle: {fileID: 0}
+  background: {fileID: 8300000, guid: 65d2d8763ea7d5b43b4460e6d8db8f18, type: 3}
+  Jump: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
+  shootGloo: {fileID: 8300000, guid: 84e427d6b66ab4066b6a4dcd0ce819ee, type: 3}
+  hitObstacle: {fileID: 8300000, guid: 79e6baad2fd414b82a6d49ce1568d2e5, type: 3}
 --- !u!4 &1112560712
 Transform:
   m_ObjectHideFlags: 0
