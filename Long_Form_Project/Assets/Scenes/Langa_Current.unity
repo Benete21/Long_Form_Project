@@ -3542,7 +3542,7 @@ GameObject:
   - component: {fileID: 966249359}
   - component: {fileID: 966249358}
   - component: {fileID: 966249357}
-  - component: {fileID: 966249356}
+  - component: {fileID: 966249360}
   m_Layer: 3
   m_Name: RotatingPlatform
   m_TagString: Sticky
@@ -3565,18 +3565,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1596876807}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &966249356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 966249354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c824dddb3c668b340b84e8901197dbee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &966249357
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3648,6 +3636,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966249354}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &966249360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966249354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2acfd6c4a25741b4fb12424cbb52b196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationAmount: 90
 --- !u!1 &1003768032
 GameObject:
   m_ObjectHideFlags: 0
@@ -7521,10 +7522,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
