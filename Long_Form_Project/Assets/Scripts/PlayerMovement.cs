@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour {
 
     //Rotation and look
     private float xRotation;
-    private float sensitivity = 50f;
+    public float sensitivity ;
     private float sensMultiplier = 1f;
     
     //Movement
