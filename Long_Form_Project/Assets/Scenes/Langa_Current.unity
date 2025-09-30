@@ -2104,7 +2104,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3844,7 +3844,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 603880609}
   SFXSource: {fileID: 1196808851}
-  background: {fileID: 8300000, guid: 65d2d8763ea7d5b43b4460e6d8db8f18, type: 3}
+  background: {fileID: 8300000, guid: 0b6d754311d0b7a4f90aa990d4ac15f4, type: 3}
   Jump: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
   shootGloo: {fileID: 8300000, guid: 84e427d6b66ab4066b6a4dcd0ce819ee, type: 3}
   hitObstacle: {fileID: 8300000, guid: 79e6baad2fd414b82a6d49ce1568d2e5, type: 3}
