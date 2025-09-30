@@ -4271,6 +4271,7 @@ GameObject:
   - component: {fileID: 1344453606}
   - component: {fileID: 1344453605}
   - component: {fileID: 1344453609}
+  - component: {fileID: 1344453610}
   m_Layer: 0
   m_Name: Mirror (1)
   m_TagString: Mirror
@@ -4385,6 +4386,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1344453610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344453604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe8191e8121d2e347ab93c1b28459887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1344453609}
+  time: 15
 --- !u!1 &1348523043
 GameObject:
   m_ObjectHideFlags: 0
@@ -5234,6 +5249,7 @@ GameObject:
   - component: {fileID: 1598610425}
   - component: {fileID: 1598610424}
   - component: {fileID: 1598610428}
+  - component: {fileID: 1598610429}
   m_Layer: 0
   m_Name: Mirror
   m_TagString: Mirror
@@ -5348,6 +5364,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1598610429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598610423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe8191e8121d2e347ab93c1b28459887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1598610428}
+  time: 10
 --- !u!1 &1598702830
 GameObject:
   m_ObjectHideFlags: 0
