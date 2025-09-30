@@ -24,5 +24,6 @@ public class Shoot_Laser_Mirror : MonoBehaviour
         beam.laser.positionCount = 0;
         beam.laserIndices.Clear();
         beam.CastRay(transform.position, transform.right, beam.laser);
+
     }
 }

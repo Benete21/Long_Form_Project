@@ -14,7 +14,6 @@ public class Laser_Reflect_Mirror : MonoBehaviour
 
     public void Start()
     {
-        laser = GetComponent<LineRenderer>();
         od = FindObjectOfType<OpenDoor>();
     }
     public void InitializeLaser(Vector3 startPos, Vector3 direction, Material mat)
@@ -22,8 +21,6 @@ public class Laser_Reflect_Mirror : MonoBehaviour
         pos = startPos;
         dir = direction;
 
-        if (laser == null)
-        {
             laserObj = new GameObject("LaserLine");
             laser = laserObj.AddComponent<LineRenderer>();
 
@@ -32,7 +29,6 @@ public class Laser_Reflect_Mirror : MonoBehaviour
             laser.material = mat;
             laser.startColor = Color.green;
             laser.endColor = Color.green;
-        }
 
         CastRay(pos, dir, laser);
     }
@@ -43,51 +39,41 @@ public class Laser_Reflect_Mirror : MonoBehaviour
         if (depth == 0)
             laserIndices.Clear();
 
-        if (depth > 10) // Avoid infinite recursion
+        if (depth > 10)
         {
             laserIndices.Add(pos + dir * 10f);
             UpdateLaser();
             return;
         }
 
-        laserIndices.Add(pos); // Add the current ray start position
+        laserIndices.Add(pos);
 
         Ray ray = new Ray(pos, dir);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, 10f))
+        if (Physics.Raycast(ray, out hit))
         {
-            laserIndices.Add(hit.point); // Add hit point
+            laserIndices.Add(hit.point);
 
             if (hit.collider.CompareTag("Mirror"))
             {
                 Vector3 reflectDir = Vector3.Reflect(dir, hit.normal);
-                Vector3 reflectOrigin = hit.point + reflectDir * 0.01f; // small offset
+                Vector3 reflectOrigin = hit.point + reflectDir * 0.01f;
 
                 CastRay(reflectOrigin, reflectDir, laser, depth + 1);
             }
             else if (hit.collider.CompareTag("LaserButton"))
             {
-                var door = hit.collider.GetComponent<OpenDoor>();
-                if (door != null)
-                {
-                    door.OpenDoorAnimator();
-                }
-
-                UpdateLaser();
-            }
-            else
-            {
-                // Hit something else
-                UpdateLaser();
+                Destroy(hit.collider.gameObject);
             }
         }
         else
         {
-            // Hit nothing
             laserIndices.Add(pos + dir * 70f);
-            UpdateLaser();
         }
+
+        // Moved here: always update after cast
+        UpdateLaser();
     }
 
 
