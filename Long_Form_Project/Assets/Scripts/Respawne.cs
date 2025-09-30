@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Respawne : MonoBehaviour
 {
+    public Transform respawnPoint;
     public float threshold;
 
 
@@ -12,7 +13,7 @@ public class Respawne : MonoBehaviour
     {
         if (transform.position.y < threshold)
         {
-            transform.position = new Vector3(-79.3f,32.5f,-54.7f);
+            transform.position = respawnPoint.position;
         }
     }
 
