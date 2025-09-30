@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 5587704138755901044}
   - component: {fileID: 2334538789685283852}
   - component: {fileID: 1733788588423919578}
+  - component: {fileID: 9104278541627632305}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -436,6 +437,8 @@ MonoBehaviour:
   delay: 5000
   explosionForce: 700
   radius: 3
+  fractured: {fileID: 0}
+  pyroBall: {fileID: 0}
   Camera: {fileID: 7514735074246494252}
   grenadePrefab: {fileID: 8407131024704683109, guid: 27b22c95397b8a94682331defa386c26, type: 3}
   displaySphere: {fileID: 6466621302851974249}
@@ -476,6 +479,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bff71ae733ff514ab5452ceae6da61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9104278541627632305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2395285350926890403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47c6aeef7021da4084d31a5a21d6068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  threshold: -10
 --- !u!1 &3325755605019944468
 GameObject:
   m_ObjectHideFlags: 0
