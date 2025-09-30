@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7366237045675546204}
   - component: {fileID: 707080070034913441}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: RespawnHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,13 +10,12 @@ public class GameRespaw : MonoBehaviour
 [SerializeField] private Transform respawnPoint;
 
 
-void OnTriggerEnter(Collider player)
-
+private void OnTriggerEnter(Collider other)
 {
-
-    player.transform.position = respawnPoint.transform.position;
-
+    if (other.CompareTag("Player"))
+    {
+        player.position = respawnPoint.position;
+    }
 }
-
 
 }
