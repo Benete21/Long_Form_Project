@@ -297,9 +297,17 @@ PrefabInstance:
       value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5587704138755901044, guid: 8c639797cd310364a8d54518432304b9, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 1003000447}
+    - target: {fileID: 5587704138755901044, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: displaySphere
       value: 
       objectReference: {fileID: 1687055628}
+    - target: {fileID: 5587704138755901044, guid: 8c639797cd310364a8d54518432304b9, type: 3}
+      propertyPath: placemntDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7137358694536562972, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.45890903
@@ -488,6 +496,11 @@ Transform:
 --- !u!4 &1003000444 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2095278735184757879, guid: 8c639797cd310364a8d54518432304b9, type: 3}
+  m_PrefabInstance: {fileID: 646663667}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1003000447 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7514735074246494252, guid: 8c639797cd310364a8d54518432304b9, type: 3}
   m_PrefabInstance: {fileID: 646663667}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1536677065 stripped

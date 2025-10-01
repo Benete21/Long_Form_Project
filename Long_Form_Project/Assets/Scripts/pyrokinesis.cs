@@ -49,6 +49,7 @@ public class pyrokinesis : MonoBehaviour
     public float maxScale = 2f;          
     private Vector3 originalScale;       
     private Coroutine currentScaleRoutine;
+    public Camera playerCamera;
     #endregion
 
 
@@ -78,7 +79,7 @@ public class pyrokinesis : MonoBehaviour
         }
 
 
-            Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, placemntDistance, ground) && boomTime)
@@ -91,7 +92,7 @@ public class pyrokinesis : MonoBehaviour
           
             displaySphere.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
 
-            displaySphere.transform.localScale = Vector3.Lerp(displaySphere.transform.localScale,originalScale * maxScale,Time.deltaTime * scaleSpeed);
+           
 
             if (Input.GetMouseButtonDown(2))
             {
@@ -105,7 +106,7 @@ public class pyrokinesis : MonoBehaviour
            
             displaySphere.SetActive(false);
 
-            displaySphere.transform.localScale = Vector3.Lerp(displaySphere.transform.localScale,originalScale,Time.deltaTime * scaleSpeed);
+          
         }
 
         void Explode()
