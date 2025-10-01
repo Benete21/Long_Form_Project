@@ -5,6 +5,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
+using TMPro;
+using UnityEngine.UI;
 
 public class pyrokinesis : MonoBehaviour
 {
@@ -21,6 +23,9 @@ public class pyrokinesis : MonoBehaviour
 
     public GameObject fractured;
     public GameObject pyroBall;
+
+
+    public RawImage pyroImage;
 
     #endregion
     //_____________________________________________________________________________________________________________
@@ -76,6 +81,15 @@ public class pyrokinesis : MonoBehaviour
 
         {
             boomTime = true ;
+            pyroImage.gameObject.SetActive(true);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+           boomTime= false ;
+            pyroImage.gameObject.SetActive(false);
+
         }
 
 
@@ -98,6 +112,7 @@ public class pyrokinesis : MonoBehaviour
             {
                 Explode();
                 boomTime = false;
+                pyroImage.gameObject.SetActive(false);
                // Instantiate(grenadePrefab, hit.point, Quaternion.identity);
             }
         }

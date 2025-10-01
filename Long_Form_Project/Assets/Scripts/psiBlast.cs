@@ -18,6 +18,7 @@ public class PsiBlist : MonoBehaviour
     private int currentAmmo;
     private float lastShootTime;
 
+    public RawImage psiblast;
     private void Start()
     {
         canShoot = false;
@@ -31,6 +32,7 @@ public class PsiBlist : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             canShoot = true;
+            psiblast.gameObject.SetActive(true);
             
         }
 
@@ -38,13 +40,18 @@ public class PsiBlist : MonoBehaviour
 
             {
                 canShoot = false;
+            psiblast.gameObject.SetActive(false);
             }
 
 
         if (Input.GetMouseButtonDown(1) && canShoot && Time.time >= lastShootTime )
         {
             Shoot();
+            psiblast.gameObject.SetActive(false);
         }
+
+
+
     }
 
     void Shoot()
