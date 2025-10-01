@@ -5447,6 +5447,14 @@ PrefabInstance:
       propertyPath: Gloo_Bar
       value: 
       objectReference: {fileID: 1572166152}
+    - target: {fileID: 7126769323832658536, guid: 8c639797cd310364a8d54518432304b9, type: 3}
+      propertyPath: maxShots
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7126769323832658536, guid: 8c639797cd310364a8d54518432304b9, type: 3}
+      propertyPath: shootForce
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 7137358694536562972, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.2
