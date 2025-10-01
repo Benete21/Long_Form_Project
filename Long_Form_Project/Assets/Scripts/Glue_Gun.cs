@@ -15,10 +15,17 @@ public class Glue_Gun : MonoBehaviour
     private bool isReloading = false;
 
     public Slider Gloo_Bar;
+
+    AudioManager audioManager;
     void Start()
     {
         shotsRemaining = maxShots;
         UpdateAmmoUI();
+    }
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -37,6 +44,8 @@ public class Glue_Gun : MonoBehaviour
 
         shotsRemaining--;
         Debug.Log("Shots left: " + shotsRemaining);
+
+        audioManager.PlaySFX(audioManager.shootGloo);
 
         if (shotsRemaining <= 0)
         {

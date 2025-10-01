@@ -33,6 +33,11 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
     }
 
+    public void Restart()
+    {
+        SceneManager.LoadScene("Langa_Current");
+    }
+
     public void Pause()
     {
         pauseMenuUi.SetActive(true);
