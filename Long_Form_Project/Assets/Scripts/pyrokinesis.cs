@@ -43,10 +43,22 @@ public class pyrokinesis : MonoBehaviour
 
     #endregion
 
+    #region Sphere
+    [Header("Sphere Scaling")]
+    public float scaleSpeed = 2f;        
+    public float maxScale = 2f;          
+    private Vector3 originalScale;       
+    private Coroutine currentScaleRoutine;
+    #endregion
+
+
     // Start is called before the first frame update
     void Start()
     {
         countdown = delay;
+
+        if (displaySphere != null)
+            originalScale = displaySphere.transform.localScale;
     }
 
     // Update is called once per frame
@@ -79,11 +91,12 @@ public class pyrokinesis : MonoBehaviour
           
             displaySphere.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
 
-         
-            if (Input.GetMouseButtonDown(0))
+            displaySphere.transform.localScale = Vector3.Lerp(displaySphere.transform.localScale,originalScale * maxScale,Time.deltaTime * scaleSpeed);
+
+            if (Input.GetMouseButtonDown(2))
             {
                 Explode();
-               // boomTime=true;
+                boomTime = false;
                // Instantiate(grenadePrefab, hit.point, Quaternion.identity);
             }
         }
@@ -91,7 +104,8 @@ public class pyrokinesis : MonoBehaviour
         {
            
             displaySphere.SetActive(false);
-            displaySphere.transform.Rotate(Vector3.right * 5 * Time.deltaTime);
+
+            displaySphere.transform.localScale = Vector3.Lerp(displaySphere.transform.localScale,originalScale,Time.deltaTime * scaleSpeed);
         }
 
         void Explode()
@@ -116,7 +130,7 @@ public class pyrokinesis : MonoBehaviour
                 }
 
                 BreakScript breakable = nearbyObject.GetComponent<BreakScript>();
-                if (breakable != null)
+                if (breakable != null && breakable.CompareTag("Wood"))
                 {
                     breakable.BreakIt();
                 }

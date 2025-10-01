@@ -7,6 +7,12 @@ TagManager:
   - Sticky
   - PyroBall
   - Psi-Blast
+  - Audio
+  - Moving_Object
+  - LaserButton
+  - Mirror
+  - Wood
+  - Steel
   layers:
   - Default
   - TransparentFX

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShootToCenter : MonoBehaviour
+public class PsiBlist : MonoBehaviour
 {
     [Header("References")]
     public Camera playerCamera;
