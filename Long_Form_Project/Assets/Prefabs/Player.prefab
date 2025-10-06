@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 2334538789685283852}
   - component: {fileID: 1733788588423919578}
   - component: {fileID: 9104278541627632305}
+  - component: {fileID: 1343438336878434204}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -491,7 +492,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47c6aeef7021da4084d31a5a21d6068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnPoint: {fileID: 0}
   threshold: -10
+--- !u!114 &1343438336878434204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2395285350926890403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f214b4dfac96ac4ba8d0da612b68a98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 1378576242226756553}
+  psiBlast: {fileID: 2334538789685283852}
+  pyro: {fileID: 5587704138755901044}
+  glooGun: {fileID: 7126769323832658536}
+  shrinkScale: {x: 0.5, y: 0.5, z: 0.5}
+  shrinkSpeedMultiplier: 0.8
+  shrinkJumpMultiplier: 0.4
 --- !u!1 &3325755605019944468
 GameObject:
   m_ObjectHideFlags: 0
