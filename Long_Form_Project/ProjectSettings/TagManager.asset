@@ -7,6 +7,10 @@ TagManager:
   - Sticky
   - PyroBall
   - Psi-Blast
+  - Moving_Object
+  - LaserButton
+  - Mirror
+  - Audio
   layers:
   - Default
   - TransparentFX
@@ -14,7 +18,7 @@ TagManager:
   - ground
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 
