@@ -122,11 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &314972194 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2095278735184757879, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-  m_PrefabInstance: {fileID: 1406334802}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &452913142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7137358694536562972, guid: 8c639797cd310364a8d54518432304b9, type: 3}
@@ -445,14 +440,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1378576242226756553, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: playerCam
-      value: 
-      objectReference: {fileID: 314972194}
-    - target: {fileID: 1378576242226756553, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: whatIsGround.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 2395285350926890403, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_Name
       value: Player
@@ -496,14 +483,6 @@ PrefabInstance:
     - target: {fileID: 7137358694536562972, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9104278541627632305, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9104278541627632305, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: respawnPoint
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -709,7 +688,7 @@ Transform:
   m_GameObject: {fileID: 6661153747387917354}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.04, y: -0.8, z: -1.7799997}
+  m_LocalPosition: {x: -6.04, y: -3.79, z: -2.37}
   m_LocalScale: {x: 30.87, y: 1, z: 12.85}
   m_ConstrainProportionsScale: 0
   m_Children: []

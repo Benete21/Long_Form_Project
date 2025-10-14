@@ -406,15 +406,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9acf479c9630c3b4593aa4b347fd05ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miniController: {fileID: 1343438336878434204}
   playerCam: {fileID: 2095278735184757879}
   orientation: {fileID: 5894447440183394547}
   sensitivity: 50
+  controllerLookSensitivity: 15
   moveSpeed: 1023
   maxSpeed: 20
   grounded: 1
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   counterMovement: 0.175
   maxSlopeAngle: 35
   slideForce: 400

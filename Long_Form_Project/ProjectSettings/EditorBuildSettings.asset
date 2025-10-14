@@ -14,4 +14,5 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Langa_Scene.unity
     guid: db38f1a0914bbcf4b80f51d662c0cce7
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 323fbe6beb8c5ea46aa67dde420f78ce, type: 2}

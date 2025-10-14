@@ -40,7 +40,7 @@ public class MiniCharacterController : MonoBehaviour
         }
     }
 
-    void ToggleShrink()
+    public void ToggleShrink()
     {
         isShrunk = !isShrunk;
 
