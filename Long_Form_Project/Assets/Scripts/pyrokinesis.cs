@@ -42,6 +42,25 @@ public class pyrokinesis : MonoBehaviour
 
 
     #endregion
+    
+    private PlayerControls controls;
+    private bool usePyroPressed;
+    private bool activatePyroPressed;
+    
+    void Awake()
+        {
+            controls = new PlayerControls();
+    
+            // Input callbacks
+            controls.Player.UsePyro.performed += ctx => usePyroPressed = true;
+            controls.Player.UsePyro.canceled += ctx => usePyroPressed = false;
+    
+            controls.Player.ActivatePyro.performed += ctx => activatePyroPressed = true;
+            controls.Player.ActivatePyro.canceled += ctx => activatePyroPressed = false;
+        }
+    
+    void OnEnable() => controls.Enable();
+    void OnDisable() => controls.Disable();
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +78,7 @@ public class pyrokinesis : MonoBehaviour
           //  boomTime = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (activatePyroPressed)
 
         {
             boomTime = true ;
@@ -80,7 +99,7 @@ public class pyrokinesis : MonoBehaviour
             displaySphere.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
 
          
-            if (Input.GetMouseButtonDown(0))
+            if (usePyroPressed)
             {
                 Explode();
                // boomTime=true;
