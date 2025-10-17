@@ -5,6 +5,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
+using TMPro;
+using UnityEngine.UI;
 
 public class pyrokinesis : MonoBehaviour
 {
@@ -21,6 +23,9 @@ public class pyrokinesis : MonoBehaviour
 
     public GameObject fractured;
     public GameObject pyroBall;
+
+
+    public RawImage pyroImage;
 
     #endregion
     //_____________________________________________________________________________________________________________
@@ -42,30 +47,24 @@ public class pyrokinesis : MonoBehaviour
 
 
     #endregion
-    
-    private PlayerControls controls;
-    private bool usePyroPressed;
-    private bool activatePyroPressed;
-    
-    void Awake()
-        {
-            controls = new PlayerControls();
-    
-            // Input callbacks
-            controls.Player.UsePyro.performed += ctx => usePyroPressed = true;
-            controls.Player.UsePyro.canceled += ctx => usePyroPressed = false;
-    
-            controls.Player.ActivatePyro.performed += ctx => activatePyroPressed = true;
-            controls.Player.ActivatePyro.canceled += ctx => activatePyroPressed = false;
-        }
-    
-    void OnEnable() => controls.Enable();
-    void OnDisable() => controls.Disable();
+
+    #region Sphere
+    [Header("Sphere Scaling")]
+    public float scaleSpeed = 2f;        
+    public float maxScale = 2f;          
+    private Vector3 originalScale;       
+    private Coroutine currentScaleRoutine;
+    public Camera playerCamera;
+    #endregion
+
 
     // Start is called before the first frame update
     void Start()
     {
         countdown = delay;
+
+        if (displaySphere != null)
+            originalScale = displaySphere.transform.localScale;
     }
 
     // Update is called once per frame
@@ -78,14 +77,23 @@ public class pyrokinesis : MonoBehaviour
           //  boomTime = true;
         }
 
-        if (activatePyroPressed)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
 
         {
             boomTime = true ;
+            pyroImage.gameObject.SetActive(true);
         }
 
 
-            Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+           boomTime= false ;
+            pyroImage.gameObject.SetActive(false);
+
+        }
+
+
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, placemntDistance, ground) && boomTime)
@@ -98,11 +106,13 @@ public class pyrokinesis : MonoBehaviour
           
             displaySphere.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
 
-         
-            if (usePyroPressed)
+           
+
+            if (Input.GetMouseButtonDown(2))
             {
                 Explode();
-               // boomTime=true;
+                boomTime = false;
+                pyroImage.gameObject.SetActive(false);
                // Instantiate(grenadePrefab, hit.point, Quaternion.identity);
             }
         }
@@ -110,7 +120,8 @@ public class pyrokinesis : MonoBehaviour
         {
            
             displaySphere.SetActive(false);
-            displaySphere.transform.Rotate(Vector3.right * 5 * Time.deltaTime);
+
+          
         }
 
         void Explode()
@@ -135,7 +146,7 @@ public class pyrokinesis : MonoBehaviour
                 }
 
                 BreakScript breakable = nearbyObject.GetComponent<BreakScript>();
-                if (breakable != null)
+                if (breakable != null && breakable.CompareTag("Wood"))
                 {
                     breakable.BreakIt();
                 }

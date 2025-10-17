@@ -36,9 +36,10 @@ public class BreakScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Psi-Blast"))
+        if(collision.gameObject.CompareTag("Psi-Blast") && this.CompareTag("Steel"))
 
         {
+            breakForce = breakForce * 2;
             BreakIt();
 
         }
