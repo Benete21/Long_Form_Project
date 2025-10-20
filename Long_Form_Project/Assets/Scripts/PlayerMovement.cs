@@ -1,9 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour {
-
+public class PlayerMovement : MonoBehaviour
+{
+    private PlayerControls controls;
+    public MiniCharacterController miniController;
+    
     //Assingables
     public Transform playerCam;
     public Transform orientation;
@@ -15,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     private float xRotation;
     public float sensitivity ;
     private float sensMultiplier = 1f;
+    public float controllerLookSensitivity = 80f; // tweak this
     
     //Movement
     public float moveSpeed = 4500;
@@ -25,6 +31,11 @@ public class PlayerMovement : MonoBehaviour {
     public float counterMovement = 0.175f;
     private float threshold = 0.01f;
     public float maxSlopeAngle = 35f;
+    
+    private Vector2 moveInput;
+    private Vector2 lookInput;
+    private bool jumpPressed;
+    private bool shrinkPressed;
 
     //Crouch & Slide
     private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
@@ -52,15 +63,25 @@ public class PlayerMovement : MonoBehaviour {
     private bool isWallRunning;
     private RaycastHit wallHit;
 
-
-    AudioManager audioManager;
-
-
     void Awake() {
         rb = GetComponent<Rigidbody>();
+        controls = new PlayerControls();
 
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        // Assign Input Callbacks
+        controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
+        controls.Player.Move.canceled += ctx => moveInput = Vector2.zero;
+
+        controls.Player.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
+        controls.Player.Look.canceled += ctx => lookInput = Vector2.zero;
+
+        controls.Player.Jump.performed += ctx => jumpPressed = true;
+        controls.Player.Jump.canceled += ctx => jumpPressed = false;
+        
+        controls.Player.Shrink.performed += ctx => shrinkPressed = true;
     }
+    
+    void OnEnable() => controls.Enable();
+    void OnDisable() => controls.Disable();
     
     void Start() {
         playerScale =  transform.localScale;
@@ -82,6 +103,13 @@ public class PlayerMovement : MonoBehaviour {
         if (jumping && !grounded && isWallRunning && readyToJump)
         {
             WallJump();
+        }
+        
+        // Shrink toggle (from previous script)
+        if (shrinkPressed)
+        {
+            miniController.ToggleShrink();
+            shrinkPressed = false;
         }
     }
 
@@ -209,8 +237,6 @@ public class PlayerMovement : MonoBehaviour {
                 rb.velocity = new Vector3(vel.x, vel.y / 2, vel.z);
             
             Invoke(nameof(ResetJump), jumpCooldown);
-
-            audioManager.PlaySFX(audioManager.Jump);
         }
     }
     
@@ -220,18 +246,25 @@ public class PlayerMovement : MonoBehaviour {
     
     private float desiredX;
     private void Look() {
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.fixedDeltaTime * sensMultiplier;
+        // Combine both mouse and gamepad look input
+        // Mouse movement comes from Unity's mouse delta
+        Vector2 mouseLook = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+    
+        // Add the look input from the new Input System (right stick)
+        Vector2 finalLook = lookInput * controllerLookSensitivity + mouseLook;
 
-        //Find current look rotation
+        float mouseX = finalLook.x * sensitivity * Time.deltaTime * sensMultiplier;
+        float mouseY = finalLook.y * sensitivity * Time.deltaTime * sensMultiplier;
+
+        // Find current look rotation
         Vector3 rot = playerCam.transform.localRotation.eulerAngles;
         desiredX = rot.y + mouseX;
-        
-        //Rotate, and also make sure we dont over- or under-rotate.
+
+        // Clamp vertical rotation
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        //Perform the rotations
+        // Apply rotations
         playerCam.transform.localRotation = Quaternion.Euler(xRotation, desiredX, 0);
         orientation.transform.localRotation = Quaternion.Euler(0, desiredX, 0);
     }
