@@ -148,8 +148,15 @@ public class PlayerMovement : MonoBehaviour
     }
     
     private void MyInput() {
-        x = Input.GetAxisRaw("Horizontal");
-        y = Input.GetAxisRaw("Vertical");
+        Vector2 inputVector = moveInput;
+
+        // Fallback to keyboard if no controller movement
+        if (inputVector.magnitude < 0.1f)
+            inputVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        x = inputVector.x;
+        y = inputVector.y;
+        
         jumping = Input.GetButton("Jump");
         crouching = Input.GetKey(KeyCode.LeftControl);
       

@@ -42,15 +42,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Psi",
-                    "type": "Button",
-                    "id": "d566cf61-2535-46fb-b180-22f215d920e8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "UsePyro",
                     "type": "Button",
                     "id": "bf47a12a-e95f-47c9-8da3-6dbf0f636fc6",
@@ -63,6 +54,24 @@
                     "name": "ActivatePyro",
                     "type": "Button",
                     "id": "bf81f6cb-2681-4d24-8585-6962dcf1cf78",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActivatePsi",
+                    "type": "Button",
+                    "id": "d566cf61-2535-46fb-b180-22f215d920e8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FirePsi",
+                    "type": "Button",
+                    "id": "e29d300a-0d4c-4c09-96d9-ac5b306a34e1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -204,28 +213,6 @@
                 },
                 {
                     "name": "",
-                    "id": "2a7271b7-8ed6-4227-9f60-785780f33177",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Psi",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d481693d-66a9-44ae-bf7c-84d700ab04b1",
-                    "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Psi",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0ad2d8ae-a75f-4f19-a2f1-36276667417a",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -265,6 +252,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "ActivatePyro",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "94724030-157b-412f-bf2b-c098643055e1",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FirePsi",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b64e23f2-9a30-4b6f-bdee-aad77cc56d91",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FirePsi",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a7271b7-8ed6-4227-9f60-785780f33177",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivatePsi",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d481693d-66a9-44ae-bf7c-84d700ab04b1",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivatePsi",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
