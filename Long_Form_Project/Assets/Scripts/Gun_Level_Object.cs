@@ -1,16 +1,21 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Gun_Level_Object : MonoBehaviour
 {
-    public GameObject bulletPrefab;       // Your bullet prefab
-    public Transform muzzlePoint;         // Where the bullet spawns
-    public float fireRate = 10f;          // Bullets per second
-    public float bulletSpeed = 20f;       // Speed of the bullet
+    public GameObject bulletPrefab;
+    public Transform muzzlePoint;
+    public float fireRate = 10f;
+    public float bulletSpeed = 20f;
+    public int maxActiveBullets = 6;
 
     private float fireTimer = 0f;
+    public static int activeBulletCount = 0; // 🔢 Track active bullets globally
 
     void Update()
     {
+        // Only fire if we have room for more bullets
+        if (activeBulletCount >= maxActiveBullets) return;
+
         fireTimer -= Time.deltaTime;
 
         if (fireTimer <= 0f)
@@ -22,13 +27,19 @@ public class Gun_Level_Object : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, muzzlePoint.position, Quaternion.LookRotation(transform.forward));
+        GameObject bullet = Instantiate(
+            bulletPrefab,
+            muzzlePoint.position,
+            Quaternion.LookRotation(transform.forward)
+        );
+
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.velocity = transform.forward * bulletSpeed;
         }
 
-        Destroy(bullet, 3f); // Clean up after 3 seconds
+        // Count this bullet
+        activeBulletCount++;
     }
 }

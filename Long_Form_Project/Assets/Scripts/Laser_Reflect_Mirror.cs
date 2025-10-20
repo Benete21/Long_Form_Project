@@ -66,6 +66,10 @@ public class Laser_Reflect_Mirror : MonoBehaviour
             {
                 Destroy(hit.collider.gameObject);
             }
+            else if (hit.collider.CompareTag("Melt"))
+            {
+                Destroy(hit.collider.gameObject);
+            }
         }
         else
         {
