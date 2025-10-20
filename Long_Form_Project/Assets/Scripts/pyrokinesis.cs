@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class pyrokinesis : MonoBehaviour
 {
