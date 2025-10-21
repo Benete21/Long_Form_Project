@@ -28,6 +28,10 @@ public class Gloo_Bullet_Scrpit : MonoBehaviour
             rb.isKinematic = true;
             Destroy(gameObject,Gloo_Desolve);
         }
+        else if (collision.gameObject.CompareTag("Melt"))
+        {
+            Destroy(gameObject);
+        }
 
     }
 
