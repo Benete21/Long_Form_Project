@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "UsePyro",
+                    "name": "ActivatePyro",
                     "type": "Button",
                     "id": "bf47a12a-e95f-47c9-8da3-6dbf0f636fc6",
                     "expectedControlType": "Button",
@@ -51,27 +51,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ActivatePyro",
-                    "type": "Button",
-                    "id": "bf81f6cb-2681-4d24-8585-6962dcf1cf78",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ActivatePsi",
                     "type": "Button",
-                    "id": "d566cf61-2535-46fb-b180-22f215d920e8",
+                    "id": "e29d300a-0d4c-4c09-96d9-ac5b306a34e1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "FirePsi",
+                    "name": "Fire",
                     "type": "Button",
-                    "id": "e29d300a-0d4c-4c09-96d9-ac5b306a34e1",
+                    "id": "a5cc3928-0ae8-41b9-9d09-9209226d2656",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AltFire",
+                    "type": "Button",
+                    "id": "b58dc78f-a5cb-4ae7-8a41-2cc836dfc831",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -214,29 +214,7 @@
                 {
                     "name": "",
                     "id": "0ad2d8ae-a75f-4f19-a2f1-36276667417a",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UsePyro",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "405b783d-ccd8-4a17-a108-2dad0524b579",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UsePyro",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3f4327f7-c17a-48f1-b6a6-1481048d1522",
-                    "path": "<Keyboard>/2",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -246,8 +224,8 @@
                 },
                 {
                     "name": "",
-                    "id": "3f1112d8-088a-4082-a31b-a63981eefe8a",
-                    "path": "<Gamepad>/dpad/down",
+                    "id": "405b783d-ccd8-4a17-a108-2dad0524b579",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -258,28 +236,6 @@
                 {
                     "name": "",
                     "id": "94724030-157b-412f-bf2b-c098643055e1",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FirePsi",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b64e23f2-9a30-4b6f-bdee-aad77cc56d91",
-                    "path": "<Gamepad>/dpad/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "FirePsi",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2a7271b7-8ed6-4227-9f60-785780f33177",
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
@@ -290,12 +246,56 @@
                 },
                 {
                     "name": "",
-                    "id": "d481693d-66a9-44ae-bf7c-84d700ab04b1",
-                    "path": "<Gamepad>/dpad/up",
+                    "id": "b64e23f2-9a30-4b6f-bdee-aad77cc56d91",
+                    "path": "<Gamepad>/dpad/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "ActivatePsi",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f6e6b89-63a5-4cbf-8be2-8befe8846afb",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cf47b2e3-c5cf-498b-b28e-91e428db3ef8",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "37f3d970-4883-40fb-939f-53e2363aad8f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AltFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96968b65-75b3-4640-b27c-927ca892fba9",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AltFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

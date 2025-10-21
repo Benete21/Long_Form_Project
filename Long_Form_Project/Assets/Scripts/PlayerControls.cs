@@ -64,7 +64,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""UsePyro"",
+                    ""name"": ""ActivatePyro"",
                     ""type"": ""Button"",
                     ""id"": ""bf47a12a-e95f-47c9-8da3-6dbf0f636fc6"",
                     ""expectedControlType"": ""Button"",
@@ -73,27 +73,27 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ActivatePyro"",
-                    ""type"": ""Button"",
-                    ""id"": ""bf81f6cb-2681-4d24-8585-6962dcf1cf78"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""ActivatePsi"",
                     ""type"": ""Button"",
-                    ""id"": ""d566cf61-2535-46fb-b180-22f215d920e8"",
+                    ""id"": ""e29d300a-0d4c-4c09-96d9-ac5b306a34e1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""FirePsi"",
+                    ""name"": ""Fire"",
                     ""type"": ""Button"",
-                    ""id"": ""e29d300a-0d4c-4c09-96d9-ac5b306a34e1"",
+                    ""id"": ""a5cc3928-0ae8-41b9-9d09-9209226d2656"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AltFire"",
+                    ""type"": ""Button"",
+                    ""id"": ""b58dc78f-a5cb-4ae7-8a41-2cc836dfc831"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -236,29 +236,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0ad2d8ae-a75f-4f19-a2f1-36276667417a"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UsePyro"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""405b783d-ccd8-4a17-a108-2dad0524b579"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""UsePyro"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3f4327f7-c17a-48f1-b6a6-1481048d1522"",
-                    ""path"": ""<Keyboard>/2"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -268,8 +246,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3f1112d8-088a-4082-a31b-a63981eefe8a"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""id"": ""405b783d-ccd8-4a17-a108-2dad0524b579"",
+                    ""path"": ""<Gamepad>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -280,28 +258,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""94724030-157b-412f-bf2b-c098643055e1"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FirePsi"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b64e23f2-9a30-4b6f-bdee-aad77cc56d91"",
-                    ""path"": ""<Gamepad>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FirePsi"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2a7271b7-8ed6-4227-9f60-785780f33177"",
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -312,12 +268,56 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d481693d-66a9-44ae-bf7c-84d700ab04b1"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""id"": ""b64e23f2-9a30-4b6f-bdee-aad77cc56d91"",
+                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ActivatePsi"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f6e6b89-63a5-4cbf-8be2-8befe8846afb"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf47b2e3-c5cf-498b-b28e-91e428db3ef8"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37f3d970-4883-40fb-939f-53e2363aad8f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltFire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96968b65-75b3-4640-b27c-927ca892fba9"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AltFire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -332,10 +332,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Shrink = m_Player.FindAction("Shrink", throwIfNotFound: true);
-        m_Player_UsePyro = m_Player.FindAction("UsePyro", throwIfNotFound: true);
         m_Player_ActivatePyro = m_Player.FindAction("ActivatePyro", throwIfNotFound: true);
         m_Player_ActivatePsi = m_Player.FindAction("ActivatePsi", throwIfNotFound: true);
-        m_Player_FirePsi = m_Player.FindAction("FirePsi", throwIfNotFound: true);
+        m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_AltFire = m_Player.FindAction("AltFire", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -401,10 +401,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Shrink;
-    private readonly InputAction m_Player_UsePyro;
     private readonly InputAction m_Player_ActivatePyro;
     private readonly InputAction m_Player_ActivatePsi;
-    private readonly InputAction m_Player_FirePsi;
+    private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_AltFire;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -413,10 +413,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Shrink => m_Wrapper.m_Player_Shrink;
-        public InputAction @UsePyro => m_Wrapper.m_Player_UsePyro;
         public InputAction @ActivatePyro => m_Wrapper.m_Player_ActivatePyro;
         public InputAction @ActivatePsi => m_Wrapper.m_Player_ActivatePsi;
-        public InputAction @FirePsi => m_Wrapper.m_Player_FirePsi;
+        public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @AltFire => m_Wrapper.m_Player_AltFire;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -438,18 +438,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Shrink.started += instance.OnShrink;
             @Shrink.performed += instance.OnShrink;
             @Shrink.canceled += instance.OnShrink;
-            @UsePyro.started += instance.OnUsePyro;
-            @UsePyro.performed += instance.OnUsePyro;
-            @UsePyro.canceled += instance.OnUsePyro;
             @ActivatePyro.started += instance.OnActivatePyro;
             @ActivatePyro.performed += instance.OnActivatePyro;
             @ActivatePyro.canceled += instance.OnActivatePyro;
             @ActivatePsi.started += instance.OnActivatePsi;
             @ActivatePsi.performed += instance.OnActivatePsi;
             @ActivatePsi.canceled += instance.OnActivatePsi;
-            @FirePsi.started += instance.OnFirePsi;
-            @FirePsi.performed += instance.OnFirePsi;
-            @FirePsi.canceled += instance.OnFirePsi;
+            @Fire.started += instance.OnFire;
+            @Fire.performed += instance.OnFire;
+            @Fire.canceled += instance.OnFire;
+            @AltFire.started += instance.OnAltFire;
+            @AltFire.performed += instance.OnAltFire;
+            @AltFire.canceled += instance.OnAltFire;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -466,18 +466,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Shrink.started -= instance.OnShrink;
             @Shrink.performed -= instance.OnShrink;
             @Shrink.canceled -= instance.OnShrink;
-            @UsePyro.started -= instance.OnUsePyro;
-            @UsePyro.performed -= instance.OnUsePyro;
-            @UsePyro.canceled -= instance.OnUsePyro;
             @ActivatePyro.started -= instance.OnActivatePyro;
             @ActivatePyro.performed -= instance.OnActivatePyro;
             @ActivatePyro.canceled -= instance.OnActivatePyro;
             @ActivatePsi.started -= instance.OnActivatePsi;
             @ActivatePsi.performed -= instance.OnActivatePsi;
             @ActivatePsi.canceled -= instance.OnActivatePsi;
-            @FirePsi.started -= instance.OnFirePsi;
-            @FirePsi.performed -= instance.OnFirePsi;
-            @FirePsi.canceled -= instance.OnFirePsi;
+            @Fire.started -= instance.OnFire;
+            @Fire.performed -= instance.OnFire;
+            @Fire.canceled -= instance.OnFire;
+            @AltFire.started -= instance.OnAltFire;
+            @AltFire.performed -= instance.OnAltFire;
+            @AltFire.canceled -= instance.OnAltFire;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -501,9 +501,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnShrink(InputAction.CallbackContext context);
-        void OnUsePyro(InputAction.CallbackContext context);
         void OnActivatePyro(InputAction.CallbackContext context);
         void OnActivatePsi(InputAction.CallbackContext context);
-        void OnFirePsi(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
+        void OnAltFire(InputAction.CallbackContext context);
     }
 }

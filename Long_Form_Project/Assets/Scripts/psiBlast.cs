@@ -9,83 +9,151 @@ public class PsiBlist : MonoBehaviour
     public GameObject psiBlastPrefab;
     public Transform shootPoint;
     public Text ammoStatusText;
+    public RawImage psiblast;
 
     [Header("Settings")]
     public float projectileSpeed = 20f;
-    public float cooldownTime = 0.5f;
+    public float cooldownTime = 0.1f;
     public int maxAmmo = 10;
 
     private bool canShoot = false;
     private int currentAmmo;
     private float lastShootTime;
+    
+    #region Input System
+    private PlayerControls controls;
+    private bool isUsingMouse = true;
+    private Vector2 aimInput;
+    #endregion
 
-    public RawImage psiblast;
+    void Awake()
+    {
+        // Initialize Input System
+        controls = new PlayerControls();
+    }
+
+    void OnEnable()
+    {
+        controls.Enable();
+        
+        // Subscribe to input events
+        controls.Player.ActivatePsi.performed += OnActivatePsiBlast;
+        controls.Player.ActivatePyro.performed += OnDeactivatePsiBlast;
+        controls.Player.AltFire.performed += OnAltFire;
+        controls.Player.Look.performed += OnAim;
+    }
+
+    void OnDisable()
+    {
+        // Unsubscribe from input events
+        controls.Player.ActivatePsi.performed -= OnActivatePsiBlast;
+        controls.Player.ActivatePyro.performed -= OnDeactivatePsiBlast;
+        controls.Player.AltFire.performed -= OnAltFire;
+        controls.Player.Look.performed -= OnAim;
+        
+        controls.Disable();
+    }
+
     private void Start()
     {
         canShoot = false;
         currentAmmo = maxAmmo;
         lastShootTime = -cooldownTime;
-      
+        
+        if (psiblast != null)
+        {
+            psiblast.gameObject.SetActive(false);
+        }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        // Detect input device (mouse vs gamepad)
+        if (Gamepad.current != null && Gamepad.current.rightStick.ReadValue().magnitude > 0.1f)
         {
-            canShoot = true;
-            psiblast.gameObject.SetActive(true);
-            
+            isUsingMouse = false;
         }
+        else if (Mouse.current != null && Mouse.current.delta.ReadValue().magnitude > 0.1f)
+        {
+            isUsingMouse = true;
+        }
+    }
 
-        else if  (Input.GetKeyDown(KeyCode.Alpha1))
+    // Input callbacks
+    void OnActivatePsiBlast(InputAction.CallbackContext context)
+    {
+        canShoot = true;
+        if (psiblast != null)
+        {
+            psiblast.gameObject.SetActive(true);
+        }
+    }
 
-            {
-                canShoot = false;
+    void OnDeactivatePsiBlast(InputAction.CallbackContext context)
+    {
+        canShoot = false;
+        if (psiblast != null)
+        {
             psiblast.gameObject.SetActive(false);
-            }
+        }
+    }
 
-
-        if (Input.GetMouseButtonDown(1) && canShoot && Time.time >= lastShootTime )
+    void OnAltFire(InputAction.CallbackContext context)
+    {
+        if (canShoot && Time.time >= lastShootTime)
         {
             Shoot();
-            psiblast.gameObject.SetActive(false);
+            if (psiblast != null)
+            {
+                psiblast.gameObject.SetActive(false);
+            }
         }
+    }
 
-
-
+    void OnAim(InputAction.CallbackContext context)
+    {
+        aimInput = context.ReadValue<Vector2>();
     }
 
     void Shoot()
     {
+        Ray ray;
         
-        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
+        if (isUsingMouse)
+        {
+            // Mouse aiming from viewport center
+            ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        }
+        else
+        {
+            // Controller aiming (center + right stick)
+            Vector3 viewportCenter = new Vector3(0.5f, 0.5f, 0);
+            Vector3 aimOffset = new Vector3(aimInput.x * 0.1f, aimInput.y * 0.1f, 0); // Adjust sensitivity
+            ray = playerCamera.ViewportPointToRay(viewportCenter + aimOffset);
+        }
 
-        
+        RaycastHit hit;
         Vector3 targetPoint;
+
         if (Physics.Raycast(ray, out hit, 100f))
         {
             targetPoint = hit.point;
         }
         else
         {
-            targetPoint = ray.GetPoint(100f); 
+            targetPoint = ray.GetPoint(100f);
         }
 
-     
         Vector3 direction = (targetPoint - shootPoint.position).normalized;
 
-
-        GameObject psiBullet = Instantiate(psiBlastPrefab, shootPoint.position, Quaternion.Euler(90,0,0));
-
-       
+        GameObject psiBullet = Instantiate(psiBlastPrefab, shootPoint.position, Quaternion.Euler(90, 0, 0));
         Rigidbody rb = psiBullet.GetComponent<Rigidbody>();
+        
         if (rb != null)
         {
             rb.velocity = direction * projectileSpeed;
         }
-      
 
-       
-    } 
+        lastShootTime = Time.time + cooldownTime;
+    }
 }
