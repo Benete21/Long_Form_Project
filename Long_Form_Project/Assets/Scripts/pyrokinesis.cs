@@ -35,85 +35,74 @@ public class pyrokinesis : MonoBehaviour
     public ParticleSystem explosionEffectPrefab;
     #endregion
 
-    #region Input System
+    #region Input
     [Header("Input")]
-    private PlayerControls controls;
-    private bool isUsingMouse = true;
-    private Vector2 aimInput;
+    [Space(5)]
+    public InputActionReference activatePyro;
+    public InputActionReference fire;
     #endregion
 
-    void Awake()
-    {
-        // Initialize Input System
-        controls = new PlayerControls();
-    }
-
-    void OnEnable()
-    {
-        controls.Enable();
-        
-        // Subscribe to input events
-        controls.Player.ActivatePyro.performed += OnActivatePyrokinesis;
-        controls.Player.Fire.performed += OnFire;
-        controls.Player.Look.performed += OnAim;
-    }
-
-    void OnDisable()
-    {
-        // Unsubscribe from input events
-        controls.Player.ActivatePyro.performed -= OnActivatePyrokinesis;
-        controls.Player.Fire.performed -= OnFire;
-        controls.Player.Look.performed -= OnAim;
-        
-        controls.Disable();
-    }
+    private PlayerInput playerInput;
+    private bool isActive = false;
 
     void Start()
     {
         countdown = delay;
+        
+        // Enable input actions
+        if (activatePyro != null)
+        {
+            activatePyro.action.Enable();
+            activatePyro.action.performed += OnTogglePyrokinesis;
+        }
+        
+        if (fire != null)
+        {
+            fire.action.Enable();
+            fire.action.performed += OnShoot;
+        }
+    }
+
+    void OnDestroy()
+    {
+        // Clean up event subscriptions
+        if (activatePyro != null)
+        {
+            activatePyro.action.performed -= OnTogglePyrokinesis;
+        }
+        
+        if (fire != null)
+        {
+            fire.action.performed -= OnShoot;
+        }
+    }
+
+    private void OnTogglePyrokinesis(InputAction.CallbackContext context)
+    {
+        isActive = true;
+        boomTime = true;
+    }
+
+    private void OnShoot(InputAction.CallbackContext context)
+    {
+        if (isActive && boomTime)
+        {
+            TryExplode();
+        }
     }
 
     void Update()
     {
         countdown -= Time.deltaTime;
-        
+
         if (countdown <= 0f && !boomTime)
         {
-            //Explode();
-            //boomTime = true;
+            // Auto countdown logic if needed
         }
 
-        // Detect input device (mouse vs gamepad)
-        if (Gamepad.current != null && Gamepad.current.rightStick.ReadValue().magnitude > 0.1f)
-        {
-            isUsingMouse = false;
-        }
-        else if (Mouse.current != null && Mouse.current.delta.ReadValue().magnitude > 0.1f)
-        {
-            isUsingMouse = true;
-        }
-
-        HandlePlacement();
-    }
-
-    void HandlePlacement()
-    {
-        Ray ray;
-        
-        if (isUsingMouse)
-        {
-            // Mouse aiming
-            ray = Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-        }
-        else
-        {
-            // Controller aiming (using center of screen + right stick offset)
-            Vector2 screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
-            Vector2 aimOffset = aimInput * 100f; // Adjust sensitivity as needed
-            ray = Camera.ScreenPointToRay(screenCenter + aimOffset);
-        }
-
+        Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+
         if (Physics.Raycast(ray, out hit, placemntDistance, ground) && boomTime)
         {
             displaySphere.transform.position = hit.point;
@@ -123,42 +112,19 @@ public class pyrokinesis : MonoBehaviour
         else
         {
             displaySphere.SetActive(false);
+            displaySphere.transform.Rotate(Vector3.right * 5 * Time.deltaTime);
         }
     }
 
-    // Input callbacks
-    void OnActivatePyrokinesis(InputAction.CallbackContext context)
+    void TryExplode()
     {
-        boomTime = true;
-    }
+        Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-    void OnFire(InputAction.CallbackContext context)
-    {
-        if (boomTime)
+        if (Physics.Raycast(ray, out hit, placemntDistance, ground))
         {
-            Ray ray;
-            if (isUsingMouse)
-            {
-                ray = Camera.ScreenPointToRay(Mouse.current.position.ReadValue());
-            }
-            else
-            {
-                Vector2 screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
-                Vector2 aimOffset = aimInput * 100f;
-                ray = Camera.ScreenPointToRay(screenCenter + aimOffset);
-            }
-
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, placemntDistance, ground))
-            {
-                Explode(hit);
-            }
+            Explode(hit);
         }
-    }
-
-    void OnAim(InputAction.CallbackContext context)
-    {
-        aimInput = context.ReadValue<Vector2>();
     }
 
     void Explode(RaycastHit hit)
@@ -172,7 +138,6 @@ public class pyrokinesis : MonoBehaviour
             if (rb != null && boomTime)
             {
                 rb.AddExplosionForce(explosionForce, hit.point, radius);
-                boomTime = false;
             }
 
             BreakScript breakable = nearbyObject.GetComponent<BreakScript>();
@@ -181,5 +146,8 @@ public class pyrokinesis : MonoBehaviour
                 breakable.BreakIt();
             }
         }
+        
+        boomTime = false;
+        isActive = false;
     }
 }

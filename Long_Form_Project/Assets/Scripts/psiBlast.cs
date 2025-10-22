@@ -10,135 +10,117 @@ public class PsiBlist : MonoBehaviour
     public GameObject psiBlastPrefab;
     public Transform shootPoint;
     public Text ammoStatusText;
-    public RawImage psiblast;
-    public Slider ammoBar; // 🔹 Added: UI bar to show ammo visually
 
     [Header("Settings")]
     public float projectileSpeed = 20f;
-    public float cooldownTime = 0.1f;
+    public float fireRate = 0.2f; // Time between shots (lower = faster)
     public int maxAmmo = 10;
-    public float reloadTime = 5f;
+
+    [Header("Input")]
+    public InputActionReference activatePsi;
+    public InputActionReference altFire;
 
     private bool canShoot = false;
-    private bool isReloading = false;
     private int currentAmmo;
-    private float lastShootTime;
+    private float nextFireTime = 0f;
+    public RawImage psiblast;
 
-    #region Input System
-    private PlayerControls controls;
-    private bool isUsingMouse = true;
-    private Vector2 aimInput;
-    #endregion
-
-    void Awake()
-    {
-        controls = new PlayerControls();
-    }
-
-    void OnEnable()
-    {
-        controls.Enable();
-
-        controls.Player.ActivatePsi.performed += OnActivatePsiBlast;
-        controls.Player.ActivatePyro.performed += OnDeactivatePsiBlast;
-        controls.Player.AltFire.performed += OnAltFire;
-        controls.Player.Look.performed += OnAim;
-    }
-
-    void OnDisable()
-    {
-        controls.Player.ActivatePsi.performed -= OnActivatePsiBlast;
-        controls.Player.ActivatePyro.performed -= OnDeactivatePsiBlast;
-        controls.Player.AltFire.performed -= OnAltFire;
-        controls.Player.Look.performed -= OnAim;
-
-        controls.Disable();
-    }
-
-    void Start()
+    private void Start()
     {
         canShoot = false;
-        isReloading = false;
         currentAmmo = maxAmmo;
-        lastShootTime = -cooldownTime;
 
-        if (psiblast != null)
-            psiblast.gameObject.SetActive(false);
-
-        // 🔹 Initialize ammo bar
-        if (ammoBar != null)
+        // Enable input actions
+        if (activatePsi != null)
         {
-            ammoBar.maxValue = maxAmmo;
-            ammoBar.value = currentAmmo;
+            activatePsi.action.Enable();
+            activatePsi.action.performed += OnTogglePsiBlast;
         }
 
-        UpdateAmmoUI();
+        if (altFire != null)
+        {
+            altFire.action.Enable();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Clean up event subscriptions
+        if (activatePsi != null)
+        {
+            activatePsi.action.performed -= OnTogglePsiBlast;
+        }
+    }
+
+    private void OnTogglePsiBlast(InputAction.CallbackContext context)
+    {
+        canShoot = true;
+        if (psiblast != null)
+        {
+            psiblast.gameObject.SetActive(true);
+        }
     }
 
     void Update()
     {
-        // Detect input device
-        if (Gamepad.current != null && Gamepad.current.rightStick.ReadValue().magnitude > 0.1f)
-            isUsingMouse = false;
-        else if (Mouse.current != null && Mouse.current.delta.ReadValue().magnitude > 0.1f)
-            isUsingMouse = true;
-    }
-
-    // Input callbacks
-    void OnActivatePsiBlast(InputAction.CallbackContext context)
-    {
-        canShoot = true;
-        if (psiblast != null)
-            psiblast.gameObject.SetActive(true);
-    }
-
-    void OnDeactivatePsiBlast(InputAction.CallbackContext context)
-    {
-        canShoot = false;
-        if (psiblast != null)
-            psiblast.gameObject.SetActive(false);
-    }
-
-    void OnAltFire(InputAction.CallbackContext context)
-    {
-        if (!canShoot || isReloading)
-            return;
-
-        if (Time.time >= lastShootTime && currentAmmo > 0)
+        // Keep keyboard fallback for backward compatibility
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Shoot();
+            canShoot = true;
             if (psiblast != null)
-                psiblast.gameObject.SetActive(false);
+            {
+                psiblast.gameObject.SetActive(true);
+            }
         }
-
-        // Start reload if out of ammo
-        if (currentAmmo <= 0 && !isReloading)
+        else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            StartCoroutine(Reload());
+            canShoot = false;
+            if (psiblast != null)
+            {
+                psiblast.gameObject.SetActive(false);
+            }
         }
-    }
 
-    void OnAim(InputAction.CallbackContext context)
-    {
-        aimInput = context.ReadValue<Vector2>();
+        // Continuous shooting when button/trigger is held
+        if (canShoot && Time.time >= nextFireTime)
+        {
+            // Check if shoot button is being held (works for both mouse and controller)
+            bool isHoldingShoot = false;
+
+            // Check controller trigger
+            if (altFire != null && altFire.action.ReadValue<float>() > 0.1f)
+            {
+                isHoldingShoot = true;
+            }
+
+            // Check mouse button (fallback)
+            if (Input.GetMouseButton(1))
+            {
+                isHoldingShoot = true;
+            }
+
+            if (isHoldingShoot)
+            {
+                Shoot();
+                nextFireTime = Time.time + fireRate;
+            }
+        }
     }
 
     void Shoot()
     {
-        Ray ray;
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+        Vector3 targetPoint;
 
-        if (isUsingMouse)
-            ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            targetPoint = hit.point;
+        }
         else
         {
-            Vector3 viewportCenter = new Vector3(0.5f, 0.5f, 0);
-            Vector3 aimOffset = new Vector3(aimInput.x * 0.1f, aimInput.y * 0.1f, 0);
-            ray = playerCamera.ViewportPointToRay(viewportCenter + aimOffset);
+            targetPoint = ray.GetPoint(100f);
         }
-
-        Vector3 targetPoint = Physics.Raycast(ray, out RaycastHit hit, 100f)
-            ? hit.point
-            : ray.GetPoint(100f);
 
         Vector3 direction = (targetPoint - shootPoint.position).normalized;
 
@@ -146,42 +128,15 @@ public class PsiBlist : MonoBehaviour
         Rigidbody rb = psiBullet.GetComponent<Rigidbody>();
 
         if (rb != null)
-            rb.velocity = direction * projectileSpeed;
-
-        lastShootTime = Time.time + cooldownTime;
-
-       
-        currentAmmo--;
-        UpdateAmmoUI();
-
-       
-        if (currentAmmo <= 0 && !isReloading)
         {
-            StartCoroutine(Reload());
+            rb.velocity = direction * projectileSpeed;
         }
-    }
 
-    IEnumerator Reload()
-    {
-        isReloading = true;
-
-        if (ammoStatusText != null)
-            ammoStatusText.text = "Reloading...";
-
-        yield return new WaitForSeconds(reloadTime);
-
-        currentAmmo = maxAmmo;
-        isReloading = false;
-        UpdateAmmoUI();
-    }
-
-    void UpdateAmmoUI()
-    {
-        if (ammoStatusText != null)
-            ammoStatusText.text = $"Ammo: {currentAmmo}/{maxAmmo}";
-
-      
-        if (ammoBar != null)
-            ammoBar.value = currentAmmo;
+        // Optional: Add ammo consumption
+        // currentAmmo--;
+        // if (currentAmmo <= 0)
+        // {
+        //     canShoot = false;
+        // }
     }
 }
