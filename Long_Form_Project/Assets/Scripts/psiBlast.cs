@@ -1,6 +1,7 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PsiBlist : MonoBehaviour
 {
@@ -10,16 +11,19 @@ public class PsiBlist : MonoBehaviour
     public Transform shootPoint;
     public Text ammoStatusText;
     public RawImage psiblast;
+    public Slider ammoBar; // 🔹 Added: UI bar to show ammo visually
 
     [Header("Settings")]
     public float projectileSpeed = 20f;
     public float cooldownTime = 0.1f;
     public int maxAmmo = 10;
+    public float reloadTime = 5f;
 
     private bool canShoot = false;
+    private bool isReloading = false;
     private int currentAmmo;
     private float lastShootTime;
-    
+
     #region Input System
     private PlayerControls controls;
     private bool isUsingMouse = true;
@@ -28,15 +32,13 @@ public class PsiBlist : MonoBehaviour
 
     void Awake()
     {
-        // Initialize Input System
         controls = new PlayerControls();
     }
 
     void OnEnable()
     {
         controls.Enable();
-        
-        // Subscribe to input events
+
         controls.Player.ActivatePsi.performed += OnActivatePsiBlast;
         controls.Player.ActivatePyro.performed += OnDeactivatePsiBlast;
         controls.Player.AltFire.performed += OnAltFire;
@@ -45,38 +47,41 @@ public class PsiBlist : MonoBehaviour
 
     void OnDisable()
     {
-        // Unsubscribe from input events
         controls.Player.ActivatePsi.performed -= OnActivatePsiBlast;
         controls.Player.ActivatePyro.performed -= OnDeactivatePsiBlast;
         controls.Player.AltFire.performed -= OnAltFire;
         controls.Player.Look.performed -= OnAim;
-        
+
         controls.Disable();
     }
 
-    private void Start()
+    void Start()
     {
         canShoot = false;
+        isReloading = false;
         currentAmmo = maxAmmo;
         lastShootTime = -cooldownTime;
-        
+
         if (psiblast != null)
-        {
             psiblast.gameObject.SetActive(false);
+
+        // 🔹 Initialize ammo bar
+        if (ammoBar != null)
+        {
+            ammoBar.maxValue = maxAmmo;
+            ammoBar.value = currentAmmo;
         }
+
+        UpdateAmmoUI();
     }
 
     void Update()
     {
-        // Detect input device (mouse vs gamepad)
+        // Detect input device
         if (Gamepad.current != null && Gamepad.current.rightStick.ReadValue().magnitude > 0.1f)
-        {
             isUsingMouse = false;
-        }
         else if (Mouse.current != null && Mouse.current.delta.ReadValue().magnitude > 0.1f)
-        {
             isUsingMouse = true;
-        }
     }
 
     // Input callbacks
@@ -84,29 +89,32 @@ public class PsiBlist : MonoBehaviour
     {
         canShoot = true;
         if (psiblast != null)
-        {
             psiblast.gameObject.SetActive(true);
-        }
     }
 
     void OnDeactivatePsiBlast(InputAction.CallbackContext context)
     {
         canShoot = false;
         if (psiblast != null)
-        {
             psiblast.gameObject.SetActive(false);
-        }
     }
 
     void OnAltFire(InputAction.CallbackContext context)
     {
-        if (canShoot && Time.time >= lastShootTime)
+        if (!canShoot || isReloading)
+            return;
+
+        if (Time.time >= lastShootTime && currentAmmo > 0)
         {
             Shoot();
             if (psiblast != null)
-            {
                 psiblast.gameObject.SetActive(false);
-            }
+        }
+
+        // Start reload if out of ammo
+        if (currentAmmo <= 0 && !isReloading)
+        {
+            StartCoroutine(Reload());
         }
     }
 
@@ -118,42 +126,62 @@ public class PsiBlist : MonoBehaviour
     void Shoot()
     {
         Ray ray;
-        
+
         if (isUsingMouse)
-        {
-            // Mouse aiming from viewport center
             ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        }
         else
         {
-            // Controller aiming (center + right stick)
             Vector3 viewportCenter = new Vector3(0.5f, 0.5f, 0);
-            Vector3 aimOffset = new Vector3(aimInput.x * 0.1f, aimInput.y * 0.1f, 0); // Adjust sensitivity
+            Vector3 aimOffset = new Vector3(aimInput.x * 0.1f, aimInput.y * 0.1f, 0);
             ray = playerCamera.ViewportPointToRay(viewportCenter + aimOffset);
         }
 
-        RaycastHit hit;
-        Vector3 targetPoint;
-
-        if (Physics.Raycast(ray, out hit, 100f))
-        {
-            targetPoint = hit.point;
-        }
-        else
-        {
-            targetPoint = ray.GetPoint(100f);
-        }
+        Vector3 targetPoint = Physics.Raycast(ray, out RaycastHit hit, 100f)
+            ? hit.point
+            : ray.GetPoint(100f);
 
         Vector3 direction = (targetPoint - shootPoint.position).normalized;
 
         GameObject psiBullet = Instantiate(psiBlastPrefab, shootPoint.position, Quaternion.Euler(90, 0, 0));
         Rigidbody rb = psiBullet.GetComponent<Rigidbody>();
-        
+
         if (rb != null)
-        {
             rb.velocity = direction * projectileSpeed;
-        }
 
         lastShootTime = Time.time + cooldownTime;
+
+       
+        currentAmmo--;
+        UpdateAmmoUI();
+
+       
+        if (currentAmmo <= 0 && !isReloading)
+        {
+            StartCoroutine(Reload());
+        }
+    }
+
+    IEnumerator Reload()
+    {
+        isReloading = true;
+
+        if (ammoStatusText != null)
+            ammoStatusText.text = "Reloading...";
+
+        yield return new WaitForSeconds(reloadTime);
+
+        currentAmmo = maxAmmo;
+        isReloading = false;
+        UpdateAmmoUI();
+    }
+
+    void UpdateAmmoUI()
+    {
+        if (ammoStatusText != null)
+            ammoStatusText.text = $"Ammo: {currentAmmo}/{maxAmmo}";
+
+      
+        if (ammoBar != null)
+            ammoBar.value = currentAmmo;
     }
 }

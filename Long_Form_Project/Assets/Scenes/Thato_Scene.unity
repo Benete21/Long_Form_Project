@@ -278,7 +278,7 @@ PrefabInstance:
       objectReference: {fileID: 1003000444}
     - target: {fileID: 1378576242226756553, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: sensitivity
-      value: 250
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1378576242226756553, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: whatIsGround.m_Bits
