@@ -8766,6 +8766,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -738983680106781442, guid: 6f2763adccfaa054ab58fda12563e465, type: 3}
     - target: {fileID: 5587704138755901044, guid: 8c639797cd310364a8d54518432304b9, type: 3}
+      propertyPath: pyro
+      value: 
+      objectReference: {fileID: 1160320026}
+    - target: {fileID: 5587704138755901044, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: pyroBall
       value: 
       objectReference: {fileID: 3373285973562806880, guid: 41f786cf3bb490347af0dd869876bdfd, type: 3}

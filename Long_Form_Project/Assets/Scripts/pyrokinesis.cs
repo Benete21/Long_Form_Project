@@ -33,6 +33,7 @@ public class pyrokinesis : MonoBehaviour
     public float placemntDistance;
     public GameObject explosionEffect;
     public ParticleSystem explosionEffectPrefab;
+    public RawImage pyro;
     #endregion
 
     #region Input
@@ -81,6 +82,7 @@ public class pyrokinesis : MonoBehaviour
     {
         isActive = true;
         boomTime = true;
+        pyro.gameObject.SetActive(true);
     }
 
     private void OnShoot(InputAction.CallbackContext context)
