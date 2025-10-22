@@ -98,6 +98,8 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
         Look();
         
+        jumping = jumpPressed || Input.GetButton("Jump");
+        
         // Wall jump check
         CheckForWall();
         if (jumping && !grounded && isWallRunning && readyToJump)
