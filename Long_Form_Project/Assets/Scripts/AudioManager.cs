@@ -8,8 +8,8 @@ public class AudioManager : MonoBehaviour
 
     [Header("----------Audio Clip----------")]
     public AudioClip background;
-    public AudioClip Jump;
-    public AudioClip shootGloo;
+    public AudioClip Jump;   // 46 or 47
+    public AudioClip shootGloo;   //Sound 21 or 32 0r 40 in Casual Game sounds U6
     public AudioClip hitObstacle;
 
     private void Start()
