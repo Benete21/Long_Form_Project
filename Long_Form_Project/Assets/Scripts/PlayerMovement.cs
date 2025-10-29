@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float sensitivity ;
     private float sensMultiplier = 1f;
     public float controllerLookSensitivity = 80f; // tweak this
+    private float desiredX;
     
     //Movement
     public float moveSpeed = 4500;
@@ -151,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
         y = inputVector.y;
         
         // Jump input - uses both new input system and legacy input
-        jumping = jumpPressed || Input.GetButton("Jump") || Input.GetKey(KeyCode.Space);
+        jumping = jumpPressed || Input.GetKey(KeyCode.Space);
     }
 
     private void Movement() {
@@ -214,10 +215,8 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
     }
     
-    private float desiredX;
     private void Look() {
         // Combine both mouse and gamepad look input
-        // Mouse movement comes from Unity's mouse delta
         Vector2 mouseLook = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
     
         // Add the look input from the new Input System (right stick)
@@ -226,15 +225,14 @@ public class PlayerMovement : MonoBehaviour
         float mouseX = finalLook.x * sensitivity * Time.deltaTime * sensMultiplier;
         float mouseY = finalLook.y * sensitivity * Time.deltaTime * sensMultiplier;
 
-        // Find current look rotation
-        Vector3 rot = playerCam.transform.localRotation.eulerAngles;
-        desiredX = rot.y + mouseX;
-
+        // Update rotation values directly instead of reading from transform
+        desiredX += mouseX;
+    
         // Clamp vertical rotation
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        // Apply rotations
+        // Apply rotations directly from accumulated values
         playerCam.transform.localRotation = Quaternion.Euler(xRotation, desiredX, 0);
         orientation.transform.localRotation = Quaternion.Euler(0, desiredX, 0);
     }
