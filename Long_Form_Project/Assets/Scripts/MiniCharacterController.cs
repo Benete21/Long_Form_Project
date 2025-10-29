@@ -8,7 +8,8 @@ public class MiniCharacterController : MonoBehaviour
     public PlayerMovement playerMovement; // Reference to your existing movement script
     public MonoBehaviour psiBlast; // Assign in Inspector
     public MonoBehaviour pyro;     // Assign in Inspector
-    public MonoBehaviour glooGun;  // Assign in Inspector
+    public MonoBehaviour glooGun; // Assign in Inspector
+    public GameObject GlooGun1;
 
     [Header("Shrink Settings")]
     public Vector3 shrinkScale = new Vector3(0.5f, 0.5f, 0.5f); // Shrunk size
@@ -57,6 +58,7 @@ public class MiniCharacterController : MonoBehaviour
             if (psiBlast != null) psiBlast.enabled = false;
             if (pyro != null)     pyro.enabled = false;
             if (glooGun != null)  glooGun.enabled = false;
+            GlooGun1.SetActive(false);
         }
         else
         {
@@ -71,6 +73,7 @@ public class MiniCharacterController : MonoBehaviour
             if (psiBlast != null) psiBlast.enabled = true;
             if (pyro != null)     pyro.enabled = true;
             if (glooGun != null)  glooGun.enabled = true;
+            GlooGun1.SetActive(true);
         }
     }
 }

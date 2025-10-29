@@ -8,9 +8,8 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Time.timeScale = 1.0f;
     }
-
-
-
+    
+    
     public void QuitGame()
     {
         Application.Quit();

@@ -3135,6 +3135,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244178577}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &245719949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2003098824697513943, guid: 8c639797cd310364a8d54518432304b9, type: 3}
+  m_PrefabInstance: {fileID: 746075623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &245896931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5992,11 +5997,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 462234535}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &467692341 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5837550774900919604, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-  m_PrefabInstance: {fileID: 746075623}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &475432918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8761,11 +8761,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 328147044}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!4 &725323954 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2095278735184757879, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-  m_PrefabInstance: {fileID: 746075623}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &725323957 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 7514735074246494252, guid: 8c639797cd310364a8d54518432304b9, type: 3}
@@ -8905,22 +8900,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.852
       objectReference: {fileID: 0}
-    - target: {fileID: 1378576242226756553, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: playerCam
+    - target: {fileID: 1343438336878434204, guid: 8c639797cd310364a8d54518432304b9, type: 3}
+      propertyPath: GlooGun1
       value: 
-      objectReference: {fileID: 725323954}
-    - target: {fileID: 1378576242226756553, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: sensitivity
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 1378576242226756553, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: whatIsGround.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1378576242226756553, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: controllerLookSensitivity
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 245719949}
     - target: {fileID: 2334538789685283852, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: ammoBar
       value: 
@@ -8930,16 +8913,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 956393073}
     - target: {fileID: 2334538789685283852, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: shootPoint
-      value: 
-      objectReference: {fileID: 467692341}
-    - target: {fileID: 2334538789685283852, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: cooldownTime
       value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 2334538789685283852, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: projectileSpeed
-      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 2395285350926890403, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_Name
@@ -8954,6 +8929,10 @@ PrefabInstance:
       value: 5.66
       objectReference: {fileID: 0}
     - target: {fileID: 5587704138755901044, guid: 8c639797cd310364a8d54518432304b9, type: 3}
+      propertyPath: pyro
+      value: 
+      objectReference: {fileID: 1160320026}
+    - target: {fileID: 5587704138755901044, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: pyroImage
       value: 
       objectReference: {fileID: 1160320026}
@@ -8961,10 +8940,6 @@ PrefabInstance:
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 725323957}
-    - target: {fileID: 5587704138755901044, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: placemntDistance
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 5837550774900919604, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.86
@@ -8985,14 +8960,6 @@ PrefabInstance:
       propertyPath: Gloo_Bar
       value: 
       objectReference: {fileID: 1572166152}
-    - target: {fileID: 7126769323832658536, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: maxShots
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7126769323832658536, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: shootForce
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 7137358694536562972, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.46
@@ -9036,10 +9003,6 @@ PrefabInstance:
     - target: {fileID: 7743040511480878071, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9104278541627632305, guid: 8c639797cd310364a8d54518432304b9, type: 3}
-      propertyPath: threshold
-      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 9104278541627632305, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: respawnPoint
