@@ -109,9 +109,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gloo_Bullet_Prefab: {fileID: 595607860138740571, guid: d2449fd1525db094c869244725f1f121, type: 3}
   shoot_Point_Gloo: {fileID: 5837550774900919604}
-  shootForce: 20
+  shootForce: 25
   Reload: 5
-  maxShots: 7
+  maxShots: 8
   Gloo_Bar: {fileID: 0}
 --- !u!1 &1534666600821341434
 GameObject:
@@ -411,8 +411,8 @@ MonoBehaviour:
   miniController: {fileID: 1343438336878434204}
   playerCam: {fileID: 2095278735184757879}
   orientation: {fileID: 5894447440183394547}
-  sensitivity: 50
-  controllerLookSensitivity: 15
+  sensitivity: 250
+  controllerLookSensitivity: 1
   moveSpeed: 1023
   maxSpeed: 20
   grounded: 1
@@ -421,8 +421,6 @@ MonoBehaviour:
     m_Bits: 8
   counterMovement: 0.175
   maxSlopeAngle: 35
-  slideForce: 400
-  slideCounterMovement: 0.2
   jumpForce: 305.1
   wallCheckDistance: 0.6
   wallJumpUpForce: 8
@@ -443,16 +441,19 @@ MonoBehaviour:
   explosionForce: 700
   radius: 3
   fractured: {fileID: 0}
-  pyroBall: {fileID: 0}
+  pyroBall: {fileID: 3373285973562806880, guid: 41f786cf3bb490347af0dd869876bdfd, type: 3}
   Camera: {fileID: 7514735074246494252}
   grenadePrefab: {fileID: 8407131024704683109, guid: 27b22c95397b8a94682331defa386c26, type: 3}
   displaySphere: {fileID: 6466621302851974249}
   ground:
     serializedVersion: 2
     m_Bits: 8
-  placemntDistance: 5
+  placemntDistance: 15
   explosionEffect: {fileID: 4084614488232734400, guid: b97a91d2c7301934d9eb32d4837ca5e5, type: 3}
   explosionEffectPrefab: {fileID: 0}
+  pyro: {fileID: 0}
+  activatePyro: {fileID: 5691007326704574942, guid: 6f2763adccfaa054ab58fda12563e465, type: 3}
+  fire: {fileID: -738983680106781442, guid: 6f2763adccfaa054ab58fda12563e465, type: 3}
 --- !u!114 &2334538789685283852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,14 +468,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 7514735074246494252}
   psiBlastPrefab: {fileID: 1799496364358528556, guid: a2bfdbf7b7d834044bdc044fcc148005, type: 3}
-  shootPoint: {fileID: 0}
+  shootPoint: {fileID: 5837550774900919604}
   ammoStatusText: {fileID: 0}
-  psiblast: {fileID: 0}
-  ammoBar: {fileID: 0}
-  projectileSpeed: 20
-  cooldownTime: 0.5
+  projectileSpeed: 35
+  fireRate: 0.2
   maxAmmo: 10
-  reloadTime: 5
+  activatePsi: {fileID: 995858451678487154, guid: 6f2763adccfaa054ab58fda12563e465, type: 3}
+  altFire: {fileID: -5886186108936031695, guid: 6f2763adccfaa054ab58fda12563e465, type: 3}
+  psiblast: {fileID: 0}
 --- !u!114 &1733788588423919578
 MonoBehaviour:
   m_ObjectHideFlags: 0
