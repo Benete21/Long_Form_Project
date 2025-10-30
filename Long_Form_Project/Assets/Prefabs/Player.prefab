@@ -34,6 +34,7 @@ Transform:
   m_Children:
   - {fileID: 9223084111824592575}
   - {fileID: 1191131080710249837}
+  - {fileID: 5837550774900919604}
   m_Father: {fileID: 7137358694536562972}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &7514735074246494252
@@ -292,7 +293,6 @@ Transform:
   - {fileID: 4454302965739821727}
   - {fileID: 5894447440183394547}
   - {fileID: 2095278735184757879}
-  - {fileID: 5837550774900919604}
   - {fileID: 8129287050000489881}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -518,6 +518,7 @@ MonoBehaviour:
   psiBlast: {fileID: 2334538789685283852}
   pyro: {fileID: 5587704138755901044}
   glooGun: {fileID: 7126769323832658536}
+  GlooGun1: {fileID: 0}
   shrinkScale: {x: 0.5, y: 0.5, z: 0.5}
   shrinkSpeedMultiplier: 0.8
   shrinkJumpMultiplier: 0.4
@@ -682,11 +683,11 @@ Transform:
   m_GameObject: {fileID: 7743040511480878071}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.323, y: -0.004999995, z: 1.163064}
+  m_LocalPosition: {x: 0.32299995, y: -0.275, z: 1.163063}
   m_LocalScale: {x: 0.22218, y: 0.22218, z: 0.7295058}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7137358694536562972}
+  m_Father: {fileID: 2095278735184757879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1660990526110055046
 PrefabInstance:

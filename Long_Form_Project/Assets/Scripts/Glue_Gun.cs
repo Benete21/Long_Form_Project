@@ -14,6 +14,8 @@ public class Glue_Gun : MonoBehaviour
     private int shotsRemaining;
     private bool isReloading = false;
 
+    public Camera playerCamera;
+    public Transform shootPoint;
     public Slider Gloo_Bar;
 
     AudioManager audioManager;
@@ -40,6 +42,14 @@ public class Glue_Gun : MonoBehaviour
     void Shoot()
     {
         GameObject Gloo_Bullet = Instantiate(Gloo_Bullet_Prefab, shoot_Point_Gloo.position, Quaternion.identity);
+
+
+      
+
+
+
+
+
         Gloo_Bullet.GetComponent<Rigidbody>().AddForce(transform.forward * shootForce, ForceMode.Impulse);
 
         shotsRemaining--;
