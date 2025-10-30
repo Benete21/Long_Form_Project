@@ -932,7 +932,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36c45ca2adaf4346868e7255bcd6a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPanel: {fileID: 891702302}
 --- !u!65 &52453588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4272,7 +4271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36c45ca2adaf4346868e7255bcd6a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPanel: {fileID: 567092035}
 --- !u!65 &321553009
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8585,7 +8583,7 @@ GameObject:
   - component: {fileID: 713104447}
   - component: {fileID: 713104446}
   - component: {fileID: 713104445}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (42)
   m_TagString: Melt
   m_Icon: {fileID: 0}
@@ -10834,7 +10832,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d95474b1da82c4a9d9b8267abdd2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPanel: {fileID: 1267110926}
 --- !u!65 &893504772
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13937,7 +13934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36c45ca2adaf4346868e7255bcd6a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPanel: {fileID: 948257628}
 --- !u!65 &1107372841
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15768,7 +15764,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e36c45ca2adaf4346868e7255bcd6a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPanel: {fileID: 1267110926}
 --- !u!65 &1234549015
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19386,7 +19381,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d95474b1da82c4a9d9b8267abdd2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPanel: {fileID: 891702302}
 --- !u!65 &1571378968
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20788,7 +20782,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d95474b1da82c4a9d9b8267abdd2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPanel: {fileID: 891702302}
 --- !u!65 &1628422272
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21751,7 +21744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2d95474b1da82c4a9d9b8267abdd2fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiPanel: {fileID: 948257628}
 --- !u!65 &1757925377
 BoxCollider:
   m_ObjectHideFlags: 0
