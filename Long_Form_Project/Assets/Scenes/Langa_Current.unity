@@ -2779,6 +2779,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5837550774900919604, guid: 8c639797cd310364a8d54518432304b9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.407
+      objectReference: {fileID: 0}
+    - target: {fileID: 5837550774900919604, guid: 8c639797cd310364a8d54518432304b9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.306
+      objectReference: {fileID: 0}
     - target: {fileID: 6779610589664836875, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_Drag
       value: 1
@@ -2824,7 +2832,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1721617537909107946, guid: 8c639797cd310364a8d54518432304b9, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 9223084111824592575, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       insertIndex: -1
@@ -7589,7 +7598,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1794776139
 RectTransform:
   m_ObjectHideFlags: 0
