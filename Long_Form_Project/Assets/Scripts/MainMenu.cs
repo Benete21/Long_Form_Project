@@ -20,6 +20,8 @@ public class MainMenu : MonoBehaviour
         // Set the first button selected when menu loads
         EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(SetSelectedNextFrame());
+        
+        Cursor.visible = true;
     }
     
     void OnEnable()

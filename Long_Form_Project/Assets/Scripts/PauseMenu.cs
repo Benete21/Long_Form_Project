@@ -16,6 +16,10 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject pauseFirstButton;
 
     public GameObject pauseMenuUi;
+    
+    void Start() {
+        Cursor.visible = true;
+    }
 
     void Awake()
     {
