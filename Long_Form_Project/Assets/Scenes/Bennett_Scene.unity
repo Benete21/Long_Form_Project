@@ -4236,7 +4236,6 @@ GameObject:
   - component: {fileID: 321553011}
   - component: {fileID: 321553010}
   - component: {fileID: 321553009}
-  - component: {fileID: 321553008}
   m_Layer: 0
   m_Name: PyrokinesisAndPsiBlastUiON
   m_TagString: Sticky
@@ -4259,18 +4258,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1596876807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &321553008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 321553006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e36c45ca2adaf4346868e7255bcd6a0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &321553009
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11705,7 +11692,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066ed1eec900d3498bce6a00377641f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseFirstButton: {fileID: 5848957}
   pauseMenuUi: {fileID: 918194468}
 --- !u!224 &937751427
 RectTransform:
@@ -20751,7 +20737,6 @@ GameObject:
   - component: {fileID: 1628422274}
   - component: {fileID: 1628422273}
   - component: {fileID: 1628422272}
-  - component: {fileID: 1628422271}
   m_Layer: 0
   m_Name: PyroKinesisAndPsiBlastUIOff
   m_TagString: Sticky
@@ -20774,18 +20759,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1596876807}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1628422271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1628422269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2d95474b1da82c4a9d9b8267abdd2fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1628422272
 BoxCollider:
   m_ObjectHideFlags: 0
