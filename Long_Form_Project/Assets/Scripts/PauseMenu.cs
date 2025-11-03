@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 
 public class PauseMenu : MonoBehaviour
@@ -10,6 +11,13 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
 
     public GameObject pauseMenuUi;
+    [SerializeField] private GameObject pauseFirstButton;
+    [SerializeField] private GameObject playerPrefab;
+    
+    void Start() {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
     void Update()
     {
@@ -33,6 +41,14 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUi.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        
+        if (playerPrefab != null)
+            playerPrefab.SetActive(true);
+
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void Pause()
@@ -40,6 +56,21 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUi.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused=true;
+        
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        
+        if (playerPrefab != null)
+            playerPrefab.SetActive(false);
+        
+        EventSystem.current.SetSelectedGameObject(null);
+        StartCoroutine(SetSelectedNextFrame());
+    }
+    
+    private IEnumerator SetSelectedNextFrame()
+    {
+        yield return null;
+        EventSystem.current.SetSelectedGameObject(pauseFirstButton);
     }
 
 
