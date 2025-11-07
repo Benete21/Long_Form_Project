@@ -62,6 +62,13 @@ public class Laser_Reflect_Mirror : MonoBehaviour
 
                 CastRay(reflectOrigin, reflectDir, laser, depth + 1);
             }
+            else if (hit.collider.CompareTag("Mirror_Move"))
+            {
+                Vector3 reflectDir = Vector3.Reflect(dir, hit.normal);
+                Vector3 reflectOrigin = hit.point + reflectDir * 0.01f;
+
+                CastRay(reflectOrigin, reflectDir, laser, depth + 1);
+            }
             else if (hit.collider.CompareTag("LaserButton"))
             {
                 Destroy(hit.collider.gameObject);

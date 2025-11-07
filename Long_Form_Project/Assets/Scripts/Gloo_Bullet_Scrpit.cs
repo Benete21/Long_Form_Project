@@ -18,10 +18,15 @@ public class Gloo_Bullet_Scrpit : MonoBehaviour
             collision.gameObject.GetComponent<Moving_Object_Stop>().StopMovement();
             Destroy(gameObject);
         }
-        else if (collision.gameObject.CompareTag("Mirror"))
+        else if (collision.gameObject.CompareTag("Mirror_Move"))
         {
             collision.gameObject.GetComponent<Moving_Object_Stop>().StopMovement();
             Destroy(gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Mirror"))
+        {
+            rb.isKinematic = true;
+            Destroy(gameObject,Gloo_Desolve);
         }
         else if (collision.gameObject.CompareTag("Sticky"))
         {
