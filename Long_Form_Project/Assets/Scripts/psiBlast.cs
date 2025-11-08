@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
-public class PsiBlist : MonoBehaviour
+public class PsiBlast : MonoBehaviour
 {
     [Header("References")]
     public Camera playerCamera;
@@ -30,6 +30,9 @@ public class PsiBlist : MonoBehaviour
     private float nextFireTime = 0f;
     private bool isReloading = false;
 
+    [Header("Audio")]
+    AudioManager audioManager;
+
     private void Start()
     {
         canShoot = false;
@@ -49,6 +52,11 @@ public class PsiBlist : MonoBehaviour
         }
 
         UpdateAmmoUI();
+    }
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void OnDestroy()
@@ -116,6 +124,8 @@ public class PsiBlist : MonoBehaviour
 
         currentAmmo--;
         UpdateAmmoUI();
+
+        audioManager.PlaySFX(audioManager.psiBulletCollision);
 
         if (currentAmmo <= 0)
         {
