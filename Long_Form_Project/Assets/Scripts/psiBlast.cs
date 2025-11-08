@@ -1,7 +1,8 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
+using UnityEngine.UI;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public class PsiBlist : MonoBehaviour
 {
@@ -10,11 +11,15 @@ public class PsiBlist : MonoBehaviour
     public GameObject psiBlastPrefab;
     public Transform shootPoint;
     public Text ammoStatusText;
+    public RawImage psiblast;
 
     [Header("Settings")]
     public float projectileSpeed = 20f;
-    public float fireRate = 0.2f; // Time between shots (lower = faster)
+    public float fireRate = 0.2f;
     public int maxAmmo = 10;
+    public float reloadDelay = 3f;
+    public Slider Ammofill;
+    private int shotsRemaining;
 
     [Header("Input")]
     public InputActionReference activatePsi;
@@ -23,12 +28,13 @@ public class PsiBlist : MonoBehaviour
     private bool canShoot = false;
     private int currentAmmo;
     private float nextFireTime = 0f;
-    public RawImage psiblast;
+    private bool isReloading = false;
 
     private void Start()
     {
         canShoot = false;
         currentAmmo = maxAmmo;
+        shotsRemaining = currentAmmo;
 
         // Enable input actions
         if (activatePsi != null)
@@ -41,11 +47,12 @@ public class PsiBlist : MonoBehaviour
         {
             altFire.action.Enable();
         }
+
+        UpdateAmmoUI();
     }
 
     private void OnDestroy()
     {
-        // Clean up event subscriptions
         if (activatePsi != null)
         {
             activatePsi.action.performed -= OnTogglePsiBlast;
@@ -56,48 +63,33 @@ public class PsiBlist : MonoBehaviour
     {
         canShoot = true;
         if (psiblast != null)
-        {
             psiblast.gameObject.SetActive(true);
-        }
     }
 
     void Update()
     {
-        // Keep keyboard fallback for backward compatibility
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             canShoot = true;
             if (psiblast != null)
-            {
                 psiblast.gameObject.SetActive(true);
-            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             canShoot = false;
             if (psiblast != null)
-            {
                 psiblast.gameObject.SetActive(false);
-            }
         }
 
-        // Continuous shooting when button/trigger is held
-        if (canShoot && Time.time >= nextFireTime)
+        if (canShoot && Time.time >= nextFireTime && !isReloading)
         {
-            // Check if shoot button is being held (works for both mouse and controller)
             bool isHoldingShoot = false;
 
-            // Check controller trigger
             if (altFire != null && altFire.action.ReadValue<float>() > 0.1f)
-            {
                 isHoldingShoot = true;
-            }
 
-            // Check mouse button (fallback)
             if (Input.GetMouseButton(1))
-            {
                 isHoldingShoot = true;
-            }
 
             if (isHoldingShoot)
             {
@@ -109,34 +101,55 @@ public class PsiBlist : MonoBehaviour
 
     void Shoot()
     {
+        if (currentAmmo <= 0 || isReloading) return;
+
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
-        Vector3 targetPoint;
-
-        if (Physics.Raycast(ray, out hit, 100f))
-        {
-            targetPoint = hit.point;
-        }
-        else
-        {
-            targetPoint = ray.GetPoint(100f);
-        }
+        Vector3 targetPoint = Physics.Raycast(ray, out hit, 100f) ? hit.point : ray.GetPoint(100f);
 
         Vector3 direction = (targetPoint - shootPoint.position).normalized;
-
         GameObject psiBullet = Instantiate(psiBlastPrefab, shootPoint.position, Quaternion.Euler(90, 0, 0));
         Rigidbody rb = psiBullet.GetComponent<Rigidbody>();
 
         if (rb != null)
-        {
             rb.velocity = direction * projectileSpeed;
-        }
 
-        // Optional: Add ammo consumption
-        // currentAmmo--;
-        // if (currentAmmo <= 0)
-        // {
-        //     canShoot = false;
-        // }
+        currentAmmo--;
+        UpdateAmmoUI();
+
+        if (currentAmmo <= 0)
+        {
+            canShoot = false;
+            StartCoroutine(AutoReload()); // 🔁 Start automatic reload
+        }
     }
+
+    IEnumerator AutoReload()
+    {
+        isReloading = true;
+        if (ammoStatusText != null)
+            ammoStatusText.text = "Reloading...";
+
+        yield return new WaitForSeconds(reloadDelay);
+
+        currentAmmo = maxAmmo;
+        isReloading = false;
+        canShoot = true;
+        UpdateAmmoUI();
+    }
+
+    void UpdateAmmoUI()
+    {
+        if (ammoStatusText != null)
+        {
+            ammoStatusText.text = $"Ammo: {currentAmmo}/{maxAmmo}";
+        }
+        if( Ammofill != null)
+        {
+           Ammofill.value = shotsRemaining;
+        }
+    }
+
+
+   
 }
