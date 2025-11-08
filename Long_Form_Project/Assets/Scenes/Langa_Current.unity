@@ -4041,7 +4041,8 @@ MonoBehaviour:
   SFXSource: {fileID: 1196808851}
   background: {fileID: 8300000, guid: 4bc4d87c22011454f8e2ca0c57cdd1bb, type: 3}
   Jump: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
-  shootGloo: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  shootGloo: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
+  glooCollision: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
   hitObstacle: {fileID: 8300000, guid: df729d213c4be44a9b55cd109f5cd4f9, type: 3}
 --- !u!4 &1112560712
 Transform:

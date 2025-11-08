@@ -25,6 +25,9 @@ public class PsiBlist : MonoBehaviour
     private float nextFireTime = 0f;
     public RawImage psiblast;
 
+    [Header("Audio")]
+    AudioManager audioManager;
+
     private void Start()
     {
         canShoot = false;
@@ -41,6 +44,11 @@ public class PsiBlist : MonoBehaviour
         {
             altFire.action.Enable();
         }
+    }
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     private void OnDestroy()
@@ -116,6 +124,7 @@ public class PsiBlist : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100f))
         {
             targetPoint = hit.point;
+            audioManager.PlaySFX(audioManager.psiBulletCollision);
         }
         else
         {
