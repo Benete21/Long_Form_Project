@@ -12788,9 +12788,12 @@ MonoBehaviour:
   musicSource: {fileID: 1152204360}
   SFXSource: {fileID: 1600754806}
   background: {fileID: 8300000, guid: 0b6d754311d0b7a4f90aa990d4ac15f4, type: 3}
-  Jump: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
-  shootGloo: {fileID: 8300000, guid: 84e427d6b66ab4066b6a4dcd0ce819ee, type: 3}
-  hitObstacle: {fileID: 8300000, guid: 79e6baad2fd414b82a6d49ce1568d2e5, type: 3}
+  Jump: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+  shootGloo: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
+  glooCollision: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  psiBulletCollision: {fileID: 8300000, guid: 81652031b64c342cc8dbc59c138d77c5, type: 3}
+  pyrokinesis: {fileID: 8300000, guid: 38a17a92b9d9748c6a1e67972041b833, type: 3}
+  hitObstacle: {fileID: 8300000, guid: df729d213c4be44a9b55cd109f5cd4f9, type: 3}
 --- !u!4 &931859192
 Transform:
   m_ObjectHideFlags: 0

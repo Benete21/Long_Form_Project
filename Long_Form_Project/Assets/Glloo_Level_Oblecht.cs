@@ -7,6 +7,7 @@ public class Glloo_Level_Oblecht : MonoBehaviour
     private Rigidbody rb;
     public float Gloo_Desolve;
 
+
     public void Start()
     {
         rb = GetComponent<Rigidbody>();
