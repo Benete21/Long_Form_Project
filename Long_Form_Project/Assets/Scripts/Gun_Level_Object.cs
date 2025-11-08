@@ -2,6 +2,7 @@
 
 public class Gun_Level_Object : MonoBehaviour
 {
+    [Header("Gun Settings")]
     public GameObject bulletPrefab;
     public Transform muzzlePoint;
     public float fireRate = 10f;
@@ -9,12 +10,12 @@ public class Gun_Level_Object : MonoBehaviour
     public int maxActiveBullets = 6;
 
     private float fireTimer = 0f;
-    public static int activeBulletCount = 0; // 🔢 Track active bullets globally
+    [HideInInspector] public int activeBulletCount = 0; // 👈 now per gun
 
     void Update()
     {
-        // Only fire if we have room for more bullets
-        if (activeBulletCount >= maxActiveBullets) return;
+        if (activeBulletCount >= maxActiveBullets)
+            return;
 
         fireTimer -= Time.deltaTime;
 
@@ -33,13 +34,22 @@ public class Gun_Level_Object : MonoBehaviour
             Quaternion.LookRotation(transform.forward)
         );
 
+        // Add force or velocity
         Rigidbody rb = bullet.GetComponent<Rigidbody>();
         if (rb != null)
-        {
             rb.velocity = transform.forward * bulletSpeed;
-        }
 
-        // Count this bullet
+        // Link the bullet back to this gun
+        Glloo_Level_Oblecht bulletScript = bullet.GetComponent<Glloo_Level_Oblecht>();
+        if (bulletScript != null)
+            bulletScript.originGun = this;
+
         activeBulletCount++;
+    }
+
+    // Called when a bullet from this gun is destroyed
+    public void NotifyBulletDestroyed()
+    {
+        activeBulletCount = Mathf.Max(0, activeBulletCount - 1);
     }
 }

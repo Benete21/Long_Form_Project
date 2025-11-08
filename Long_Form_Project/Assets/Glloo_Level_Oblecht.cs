@@ -6,7 +6,7 @@ public class Glloo_Level_Oblecht : MonoBehaviour
 {
     private Rigidbody rb;
     public float Gloo_Desolve;
-
+    public Gun_Level_Object originGun;
 
     public void Start()
     {
@@ -14,8 +14,9 @@ public class Glloo_Level_Oblecht : MonoBehaviour
     }
     void OnDestroy()
     {
-        // Make sure we don't go below zero
-        Gun_Level_Object.activeBulletCount = Mathf.Max(0, Gun_Level_Object.activeBulletCount - 1);
+        if (originGun != null)
+            originGun.NotifyBulletDestroyed();
+
     }
     public void OnCollisionEnter(Collision collision)
     {
