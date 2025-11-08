@@ -6309,7 +6309,7 @@ GameObject:
   - component: {fileID: 438292082}
   m_Layer: 0
   m_Name: Mirror (8)
-  m_TagString: Mirror
+  m_TagString: Mirror_Move
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
