@@ -46,6 +46,8 @@ public class pyrokinesis : MonoBehaviour
     private PlayerInput playerInput;
     private bool isActive = false;
 
+    AudioManager audioManager;
+
     void Start()
     {
         countdown = delay;
@@ -64,12 +66,19 @@ public class pyrokinesis : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     void OnDestroy()
     {
         // Clean up event subscriptions
         if (activatePyro != null)
         {
             activatePyro.action.performed -= OnTogglePyrokinesis;
+
+            audioManager.PlaySFX(audioManager.pyrokinesis);
         }
         
         if (fire != null)
@@ -83,6 +92,7 @@ public class pyrokinesis : MonoBehaviour
         isActive = true;
         boomTime = true;
         pyro.gameObject.SetActive(true);
+
     }
 
     private void OnShoot(InputAction.CallbackContext context)
