@@ -116,6 +116,13 @@ public class pyrokinesis : MonoBehaviour
             displaySphere.SetActive(false);
             displaySphere.transform.Rotate(Vector3.right * 5 * Time.deltaTime);
         }
+
+         if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            boomTime= false;
+            
+                pyro.gameObject.SetActive(false);
+        }
     }
 
     void TryExplode()
@@ -140,6 +147,7 @@ public class pyrokinesis : MonoBehaviour
             if (rb != null && boomTime)
             {
                 rb.AddExplosionForce(explosionForce, hit.point, radius);
+               
             }
 
             BreakScript breakable = nearbyObject.GetComponent<BreakScript>();
@@ -151,5 +159,6 @@ public class pyrokinesis : MonoBehaviour
         
         boomTime = false;
         isActive = false;
+         pyro.gameObject.SetActive (false);
     }
 }
