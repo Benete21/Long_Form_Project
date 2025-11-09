@@ -66,7 +66,22 @@ public class PauseMenu : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(SetSelectedNextFrame());
     }
-    
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
     private IEnumerator SetSelectedNextFrame()
     {
         yield return null;

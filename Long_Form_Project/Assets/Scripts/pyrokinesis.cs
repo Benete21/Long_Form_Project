@@ -78,7 +78,6 @@ public class pyrokinesis : MonoBehaviour
         {
             activatePyro.action.performed -= OnTogglePyrokinesis;
 
-            audioManager.PlaySFX(audioManager.pyrokinesis);
         }
         
         if (fire != null)
@@ -92,6 +91,8 @@ public class pyrokinesis : MonoBehaviour
         isActive = true;
         boomTime = true;
         pyro.gameObject.SetActive(true);
+
+        audioManager.PlaySFX(audioManager.pyrokinesis);
 
     }
 
