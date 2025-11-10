@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 5198441015094244232}
-  laserDistance: 20
+  laserDistance: 100
   ignoreMask:
     serializedVersion: 2
     m_Bits: 0
