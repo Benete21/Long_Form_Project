@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
-
+using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -14,25 +14,68 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject pauseFirstButton;
     [SerializeField] private GameObject playerPrefab;
     
-    void Start() {
+    private PlayerInput playerInput;
+    private InputAction pauseAction;
+    
+    void Awake()
+    {
+        // Get the PlayerInput component (make sure it's on this GameObject or find it)
+        playerInput = GetComponent<PlayerInput>();
+        if (playerInput == null)
+            playerInput = FindObjectOfType<PlayerInput>();
+        
+        // Get the pause action from your PauseMenu action map
+        if (playerInput != null)
+        {
+            pauseAction = playerInput.actions["PauseMenu"];
+        }
+    }
+    
+    void Start()
+    {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    void OnEnable()
+    {
+        if (pauseAction != null)
+        {
+            pauseAction.performed += OnPausePressed;
+        }
+    }
+
+    void OnDisable()
+    {
+        if (pauseAction != null)
+        {
+            pauseAction.performed -= OnPausePressed;
+        }
+    }
+
+    private void OnPausePressed(InputAction.CallbackContext context)
+    {
+        TogglePause();
+    }
+
     void Update()
     {
+        // Keep keyboard support as backup
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused)
-            {
-                Resume(); 
-                Time.timeScale = 1f;
-            }
-            else 
-            { 
-                Pause(); 
-                Time.timeScale = 0f; 
-            }
+            TogglePause();
+        }
+    }
+
+    private void TogglePause()
+    {
+        if (GameIsPaused)
+        {
+            Resume();
+        }
+        else
+        {
+            Pause();
         }
     }
 
@@ -55,7 +98,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenuUi.SetActive(true);
         Time.timeScale = 0f;
-        GameIsPaused=true;
+        GameIsPaused = true;
         
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -80,14 +123,14 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu()
     {
+        Time.timeScale = 1f; // Reset time scale
+        GameIsPaused = false;
         SceneManager.LoadScene("Main Menu");
     }
+    
     private IEnumerator SetSelectedNextFrame()
     {
         yield return null;
         EventSystem.current.SetSelectedGameObject(pauseFirstButton);
     }
-
-
-
 }
