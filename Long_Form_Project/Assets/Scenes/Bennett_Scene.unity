@@ -12081,7 +12081,7 @@ PrefabInstance:
       objectReference: {fileID: 1572166152}
     - target: {fileID: 7137358694536562972, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.22
+      value: -3.26
       objectReference: {fileID: 0}
     - target: {fileID: 7137358694536562972, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12089,7 +12089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7137358694536562972, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -27.3
+      value: -25.18
       objectReference: {fileID: 0}
     - target: {fileID: 7137358694536562972, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12121,6 +12121,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7743040511480878071, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7892117073794660143, guid: 8c639797cd310364a8d54518432304b9, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9104278541627632305, guid: 8c639797cd310364a8d54518432304b9, type: 3}
@@ -24347,7 +24351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Your tutorial has ended. Be creative to solve the puzzles. Goodluck!
+  m_text: Use psi-blast on the green walls to ricochet the projectile
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -34021,7 +34025,7 @@ Transform:
   m_GameObject: {fileID: 2060642728}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.95, y: 4.9479, z: 102.31}
+  m_LocalPosition: {x: -18.95, y: 4.9479, z: 105.4}
   m_LocalScale: {x: 9.881767, y: 11.948649, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
