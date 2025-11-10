@@ -1,56 +1,68 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Glue_Gun : MonoBehaviour
 {
+    [Header("Gun Settings")]
     public GameObject Gloo_Bullet_Prefab;
     public Transform shoot_Point_Gloo;
-    public float shootForce;
+    public float shootForce = 20f;
+    public float fireRate = 0.2f;
 
-    public float Reload;
-    public int maxShots;
+    [Header("Ammo Settings")]
+    public float Reload = 10f;
+    public int maxShots = 5;
     private int shotsRemaining;
     private bool isReloading = false;
+    private float nextFireTime = 0f;
 
-    public Camera playerCamera;
-    public Transform shootPoint;
+    [Header("UI")]
     public Slider Gloo_Bar;
 
-    AudioManager audioManager;
-    void Start()
-    {
-        shotsRemaining = maxShots;
-        UpdateAmmoUI();
-    }
+    [Header("Audio")]
+    private AudioManager audioManager;
 
-    private void Awake()
+    void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
+    void Start()
+    {
+        shotsRemaining = maxShots;
+
+        if (Gloo_Bar != null)
+        {
+            Gloo_Bar.maxValue = maxShots;
+            Gloo_Bar.value = shotsRemaining;
+        }
+    }
+
     void Update()
     {
-            if (Input.GetButtonDown("Fire1") && shotsRemaining > 0 && !isReloading)
-            {
-                Shoot();
-                UpdateAmmoUI();
-            }
+        // Shooting
+        if (Input.GetButton("Fire1") && Time.time >= nextFireTime && shotsRemaining > 0 && !isReloading)
+        {
+            nextFireTime = Time.time + fireRate;
+            Shoot();
+            UpdateAmmoUI();
+        }
+
+        // Instant reload when pressing R
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading && shotsRemaining < maxShots)
+        {
+            InstantReload();
+        }
     }
+
+
 
     void Shoot()
     {
-        GameObject Gloo_Bullet = Instantiate(Gloo_Bullet_Prefab, shoot_Point_Gloo.position, Quaternion.identity);
-
-
-      
-
-
-
-
-
-        Gloo_Bullet.GetComponent<Rigidbody>().AddForce(transform.forward * shootForce, ForceMode.Impulse);
+        GameObject Gloo_Bullet = Instantiate(Gloo_Bullet_Prefab, shoot_Point_Gloo.position, shoot_Point_Gloo.rotation);
+        Rigidbody rb = Gloo_Bullet.GetComponent<Rigidbody>();
+        rb.AddForce(shoot_Point_Gloo.forward * shootForce, ForceMode.Impulse);
 
         shotsRemaining--;
         Debug.Log("Shots left: " + shotsRemaining);
@@ -66,18 +78,37 @@ public class Glue_Gun : MonoBehaviour
     IEnumerator AutoRefill()
     {
         isReloading = true;
-        Debug.Log("Out of shots! Refilling in 10 seconds...");
-        yield return new WaitForSeconds(Reload);
+        float elapsed = 0f;
+
+        while (elapsed < Reload)
+        {
+            elapsed += Time.deltaTime;
+            if (Gloo_Bar != null)
+                Gloo_Bar.value = Mathf.Lerp(0, maxShots, elapsed / Reload);
+            yield return null;
+        }
+
         shotsRemaining = maxShots;
         isReloading = false;
-        Debug.Log("Glue gun refilled!");
         UpdateAmmoUI();
+        Debug.Log("Glue gun refilled!");
     }
-    public void UpdateAmmoUI()
+
+    void UpdateAmmoUI()
     {
-        if(Gloo_Bar != null)
+        if (Gloo_Bar != null)
         {
             Gloo_Bar.value = shotsRemaining;
         }
     }
+    void InstantReload()
+    {
+        isReloading = true;
+        shotsRemaining = maxShots;
+        UpdateAmmoUI();
+        Debug.Log("Instant reload complete!");
+        isReloading = false;
+
+    }
+
 }
