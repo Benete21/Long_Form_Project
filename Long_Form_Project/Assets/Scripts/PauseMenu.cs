@@ -156,4 +156,10 @@ public class PauseMenu : MonoBehaviour
         yield return null;
         EventSystem.current.SetSelectedGameObject(pauseFirstButton);
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
 }
