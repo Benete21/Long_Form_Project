@@ -130,7 +130,7 @@ public class PsiBlast : MonoBehaviour
         if (currentAmmo <= 0)
         {
             canShoot = false;
-            StartCoroutine(AutoReload()); // 🔁 Start automatic reload
+            StartCoroutine(AutoReload());
         }
     }
 

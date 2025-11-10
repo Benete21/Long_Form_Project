@@ -8,10 +8,10 @@ public class InGameInstructions : MonoBehaviour
 
     [Header("UI Display Settings")]
     [Tooltip("How long the UI stays visible (in seconds)")]
-    public float displayTime = 3f; // Adjustable in Inspector
+    public float displayTime = 3f;
 
-    private static Coroutine currentCoroutine; // Tracks the currently running coroutine
-    private static GameObject currentUI;        // Tracks the currently active UI panel
+    private static InGameInstructions currentInstance; // Track the instance, not just the coroutine
+    private Coroutine myCoroutine; // Instance-specific coroutine reference
 
     private void OnTriggerEnter(Collider collision)
     {
@@ -23,18 +23,27 @@ public class InGameInstructions : MonoBehaviour
 
     private void ShowThisUIPanel()
     {
-        // If another UI is active, stop its coroutine and hide it
-        if (currentUI != null && currentUI != uiPanel)
+        // If another instance is active, tell IT to stop its own coroutine
+        if (currentInstance != null && currentInstance != this)
         {
-            if (currentCoroutine != null)
-                StopCoroutine(currentCoroutine);
-
-            currentUI.SetActive(false);
+            currentInstance.StopMyCoroutine();
         }
 
         // Start showing this UI
-        currentCoroutine = StartCoroutine(ShowUIPanel());
-        currentUI = uiPanel;
+        myCoroutine = StartCoroutine(ShowUIPanel());
+        currentInstance = this;
+    }
+
+    private void StopMyCoroutine()
+    {
+        if (myCoroutine != null)
+        {
+            StopCoroutine(myCoroutine);
+            myCoroutine = null;
+        }
+        
+        if (uiPanel != null)
+            uiPanel.SetActive(false);
     }
 
     private IEnumerator ShowUIPanel()
@@ -47,11 +56,11 @@ public class InGameInstructions : MonoBehaviour
         uiPanel.SetActive(false);
         Debug.Log("UI Hidden: " + uiPanel.name);
 
-        // Clear static trackers if this is the currently active one
-        if (currentUI == uiPanel)
+        // Clear static tracker if this is still the active instance
+        if (currentInstance == this)
         {
-            currentUI = null;
-            currentCoroutine = null;
+            currentInstance = null;
+            myCoroutine = null;
         }
     }
 }
