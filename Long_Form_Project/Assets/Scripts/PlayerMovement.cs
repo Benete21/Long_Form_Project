@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerControls controls;
-    public MiniCharacterController miniController;
+    /*public MiniCharacterController miniController;*/
     
     //Assingables
     public Transform playerCam;
@@ -102,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         // Shrink toggle (from previous script)
         if (shrinkPressed)
         {
-            miniController.ToggleShrink();
+            /*miniController.ToggleShrink();*/
             shrinkPressed = false;
         }
     }
