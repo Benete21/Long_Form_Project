@@ -3768,6 +3768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationAmount: 90
+  rotationDuration: 2
 --- !u!1 &980933817
 GameObject:
   m_ObjectHideFlags: 0
@@ -4043,6 +4044,8 @@ MonoBehaviour:
   Jump: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
   shootGloo: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
   glooCollision: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  psiBulletCollision: {fileID: 8300000, guid: 45e5a2d015897d34780787ab6e691387, type: 3}
+  pyrokinesis: {fileID: 0}
   hitObstacle: {fileID: 8300000, guid: df729d213c4be44a9b55cd109f5cd4f9, type: 3}
 --- !u!4 &1112560712
 Transform:
