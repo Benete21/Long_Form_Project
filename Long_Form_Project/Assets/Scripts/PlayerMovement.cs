@@ -58,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isWallRunning;
     private RaycastHit wallHit;
 
+    AudioManager audioManager;
+
     void Awake() {
         rb = GetComponent<Rigidbody>();
         controls = new PlayerControls();
@@ -73,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Jump.canceled += ctx => jumpPressed = false;
         
         controls.Player.Shrink.performed += ctx => shrinkPressed = true;
+
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     
     void OnEnable() => controls.Enable();
@@ -208,6 +212,8 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector3(vel.x, vel.y / 2, vel.z);
             
             Invoke(nameof(ResetJump), jumpCooldown);
+
+            audioManager.PlaySFX(audioManager.Jump);
         }
     }
     

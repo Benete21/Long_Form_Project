@@ -12,6 +12,7 @@ public class PsiBlast : MonoBehaviour
     public Transform shootPoint;
     public Text ammoStatusText;
     public RawImage psiblast;
+    public RawImage pyro;
 
     [Header("Settings")]
     public float projectileSpeed = 20f;
@@ -72,6 +73,7 @@ public class PsiBlast : MonoBehaviour
         canShoot = true;
         if (psiblast != null)
             psiblast.gameObject.SetActive(true);
+        pyro.gameObject.SetActive(false);
     }
 
     void Update()

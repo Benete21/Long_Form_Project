@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 public class RotateOnGlooCollision : MonoBehaviour
-{
+{ 
     [Tooltip("Degrees to rotate on the X axis when Gloo collides.")]
     public float rotationAmount = 90f;
 
@@ -48,3 +48,4 @@ public class RotateOnGlooCollision : MonoBehaviour
         isRotating = false;
     }
 }
+

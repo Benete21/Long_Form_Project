@@ -34,6 +34,7 @@ public class pyrokinesis : MonoBehaviour
     public GameObject explosionEffect;
     public ParticleSystem explosionEffectPrefab;
     public RawImage pyro;
+    public RawImage psiBlast;
     #endregion
 
     #region Input
@@ -88,12 +89,17 @@ public class pyrokinesis : MonoBehaviour
 
     private void OnTogglePyrokinesis(InputAction.CallbackContext context)
     {
-        isActive = true;
-        boomTime = true;
-        pyro.gameObject.SetActive(true);
+        
+        isActive = !isActive;
+        boomTime = isActive;
 
-        audioManager.PlaySFX(audioManager.pyrokinesis);
+        pyro.gameObject.SetActive(isActive);
+        psiBlast.gameObject.SetActive(!isActive);
 
+        if (isActive)
+        {
+            audioManager.PlaySFX(audioManager.pyrokinesis);
+        }
     }
 
     private void OnShoot(InputAction.CallbackContext context)
@@ -162,7 +168,7 @@ public class pyrokinesis : MonoBehaviour
             }
 
             BreakScript breakable = nearbyObject.GetComponent<BreakScript>();
-            if (breakable != null)
+            if (breakable != null && breakable.CompareTag("Wood"))
             {
                 breakable.BreakIt();
             }

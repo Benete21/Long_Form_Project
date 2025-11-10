@@ -21,12 +21,16 @@ public class BreakScript : MonoBehaviour
 
     public void BreakIt()
     {
+       
+
         GameObject frac = Instantiate(fractured, transform.position,transform.rotation);
 
         foreach (Rigidbody rb in frac.GetComponentsInChildren<Rigidbody>())
         {
             Vector3 force = (rb.transform.position - transform.position).normalized * breakForce;
             rb.AddForce(force);
+
+          
         }
 
         Destroy(gameObject);
