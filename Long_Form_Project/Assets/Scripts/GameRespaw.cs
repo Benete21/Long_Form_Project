@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameRespaw : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private Transform respawnPoint; // Each zone assigns its own respawn point
+    [SerializeField] private Transform respawnPoint;
 
     private void Awake()
     {
@@ -16,15 +16,15 @@ public class GameRespaw : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerRespawning();
+            PlayerRespawing();
         }
     }
 
-    public void PlayerRespawning()
+    public void PlayerRespawing()
     {
         if (player == null || respawnPoint == null)
         {
-            Debug.LogWarning("Player or respawn point not assigned on " + gameObject.name);
+            Debug.LogWarning("Player or respawn point not assigned!");
             return;
         }
 
@@ -40,7 +40,6 @@ public class GameRespaw : MonoBehaviour
     private void RespawnPlayer()
     {
         player.position = respawnPoint.position;
-        player.rotation = respawnPoint.rotation; // Also match rotation
 
         Rigidbody rb = player.GetComponent<Rigidbody>();
         if (rb != null)
