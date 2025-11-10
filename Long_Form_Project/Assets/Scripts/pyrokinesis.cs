@@ -157,6 +157,11 @@ public class pyrokinesis : MonoBehaviour
     {
         Instantiate(explosionEffect, hit.point, hit.transform.rotation);
 
+        ParticleSystem explosion = Instantiate(explosionEffectPrefab, (hit.point + new Vector3(0f,1f,0f)), hit.transform.rotation);
+
+        explosion.Play();
+
+     
         Collider[] colliders = Physics.OverlapSphere(hit.point, radius);
         foreach (Collider nearbyObject in colliders)
         {
@@ -164,6 +169,8 @@ public class pyrokinesis : MonoBehaviour
             if (rb != null && boomTime)
             {
                 rb.AddExplosionForce(explosionForce, hit.point, radius);
+
+              
                
             }
 
