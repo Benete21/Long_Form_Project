@@ -14,8 +14,15 @@ private void OnTriggerEnter(Collider other)
 {
     if (other.CompareTag("Player"))
     {
-        player.position = respawnPoint.position;
+            PlayerRespawing();
     }
 }
-
+    public void PlayerRespawing()
+    {
+        player.position = respawnPoint.position;
+    }
+    public void Hit()
+    {
+        player.position = respawnPoint.position;
+    }
 }

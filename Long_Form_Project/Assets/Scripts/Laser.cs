@@ -29,7 +29,7 @@ public class Laser : MonoBehaviour
             lineRenderer.SetPosition(1, rayHit.point);
 
             //must have a MonoBehaviour script called Target with public method Hit
-            if (rayHit.collider.TryGetComponent(out Laser_Target target))
+            if (rayHit.collider.TryGetComponent(out GameRespaw target))
             {
                 target.Hit();
                 OnHitTarget?.Invoke();
