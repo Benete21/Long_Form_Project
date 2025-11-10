@@ -19,15 +19,26 @@ public class PauseMenu : MonoBehaviour
     
     void Awake()
     {
-        // Get the PlayerInput component (make sure it's on this GameObject or find it)
         playerInput = GetComponent<PlayerInput>();
         if (playerInput == null)
             playerInput = FindObjectOfType<PlayerInput>();
         
-        // Get the pause action from your PauseMenu action map
         if (playerInput != null)
         {
-            pauseAction = playerInput.actions["PauseMenu"];
+            // Look for the action named "Pause" inside the "PauseMenu" action map
+            pauseAction = playerInput.actions.FindAction("PauseMenu/Pause");
+            
+            // Alternative: if you named it differently
+            // pauseAction = playerInput.actions["Pause"];
+            
+            if (pauseAction != null)
+            {
+                Debug.Log("Pause action found!");
+            }
+            else
+            {
+                Debug.LogError("Pause action not found! Check your Input Actions setup.");
+            }
         }
     }
     
@@ -41,7 +52,9 @@ public class PauseMenu : MonoBehaviour
     {
         if (pauseAction != null)
         {
+            pauseAction.Enable();
             pauseAction.performed += OnPausePressed;
+            Debug.Log("Pause action enabled");
         }
     }
 
@@ -50,19 +63,29 @@ public class PauseMenu : MonoBehaviour
         if (pauseAction != null)
         {
             pauseAction.performed -= OnPausePressed;
+            pauseAction.Disable();
         }
     }
 
     private void OnPausePressed(InputAction.CallbackContext context)
     {
+        Debug.Log("Pause button pressed!");
         TogglePause();
     }
 
     void Update()
     {
-        // Keep keyboard support as backup
+        // Direct gamepad check as fallback
+        if (Gamepad.current != null && Gamepad.current.startButton.wasPressedThisFrame)
+        {
+            Debug.Log("Start button pressed directly!");
+            TogglePause();
+        }
+        
+        // Keyboard support
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Debug.Log("Escape pressed!");
             TogglePause();
         }
     }
@@ -123,7 +146,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu()
     {
-        Time.timeScale = 1f; // Reset time scale
+        Time.timeScale = 1f;
         GameIsPaused = false;
         SceneManager.LoadScene("Main Menu");
     }
