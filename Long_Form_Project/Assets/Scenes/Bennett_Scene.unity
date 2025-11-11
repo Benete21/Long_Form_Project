@@ -32817,7 +32817,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Your tutorial has ended. Be creative to solve the puzzles. Goodluck!
+  m_text: Use Psi-blast against the green walls to ricochet the projectile.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -45414,7 +45414,7 @@ Transform:
   m_GameObject: {fileID: 2060642728}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.95, y: 4.9479, z: 102.31}
+  m_LocalPosition: {x: -18.95, y: 4.9479, z: 105.75}
   m_LocalScale: {x: 9.881767, y: 11.948649, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

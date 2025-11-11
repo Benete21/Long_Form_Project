@@ -78,13 +78,8 @@ public class pyrokinesis : MonoBehaviour
         if (activatePyro != null)
         {
             activatePyro.action.performed -= OnTogglePyrokinesis;
-
         }
         
-        if (fire != null)
-        {
-            fire.action.performed -= OnShoot;
-        }
     }
 
     private void OnTogglePyrokinesis(InputAction.CallbackContext context)
@@ -184,5 +179,7 @@ public class pyrokinesis : MonoBehaviour
         boomTime = false;
         isActive = false;
          pyro.gameObject.SetActive (false);
+
+       
     }
 }
