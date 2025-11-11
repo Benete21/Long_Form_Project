@@ -4,6 +4,7 @@ public class Shoot_Laser_Mirror : MonoBehaviour
 {
     public Material material;
     private Laser_Reflect_Mirror beam;
+    public AudioSource breakGlass;
 
     private void Start()
     {
