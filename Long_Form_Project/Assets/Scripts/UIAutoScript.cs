@@ -3,115 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class UIAutoSelect : MonoBehaviour
 {
-    [Header("Selection")]
     public GameObject firstSelected;
     
-    [Header("Panels")]
-    public GameObject keyboardPanel;
-    public GameObject controllerPanel;
-    
-    [Header("Buttons")]
-    public GameObject keyboardButton;
-    public GameObject controllerButton;
-
-    [Header("Settings")]
-    [Tooltip("Force reselection if nothing is selected")]
-    public bool forceReselection = true;
-    
-    private EventSystem eventSystem;
-
-    private void Awake()
+    private void OnEnable()     
     {
-        eventSystem = EventSystem.current;
-        if (eventSystem == null)
+        // Clear any existing selection
+        if (EventSystem.current != null)
         {
-            Debug.LogError("No EventSystem found in scene! UI navigation will not work.");
+            EventSystem.current.SetSelectedGameObject(null);
         }
-    }
-
-    private void OnEnable()
-    {
-        StartCoroutine(SelectAfterFrame());
-    }
-
-    private void Update()
-    {
-        // Force reselection if nothing is selected (useful for gamepad navigation)
-        if (forceReselection && eventSystem != null && eventSystem.currentSelectedGameObject == null)
-        {
-            SelectFirstAvailable();
-        }
-    }
-
-    private IEnumerator SelectAfterFrame()
-    {
-        // Wait for end of frame to ensure UI is fully initialized
-        yield return new WaitForEndOfFrame();
         
-        SelectFirstAvailable();
-    }
-
-    private void SelectFirstAvailable()
-    {
-        if (eventSystem == null) return;
-
-        // Clear current selection first
-        eventSystem.SetSelectedGameObject(null);
-        
-        // Try to select the first selected object if it's active
-        if (firstSelected != null && firstSelected.activeInHierarchy)
-        {
-            // Make sure the object has a Selectable component
-            Selectable selectable = firstSelected.GetComponent<Selectable>();
-            if (selectable != null && selectable.interactable)
-            {
-                eventSystem.SetSelectedGameObject(firstSelected);
-                Debug.Log($"Selected: {firstSelected.name}");
-            }
-            else
-            {
-                Debug.LogWarning($"First selected object '{firstSelected.name}' is not interactable or missing Selectable component!");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("First selected object is null or inactive!");
-        }
+        // Wait for Input System to be ready
+        StartCoroutine(SetSelectedNextFrame());
     }
     
-    public void SwitchToKeyboard()
+    private IEnumerator SetSelectedNextFrame()
     {
-        if (keyboardPanel != null) keyboardPanel.SetActive(true);
-        if (controllerPanel != null) controllerPanel.SetActive(false);
-        //if (keyboardButton != null) keyboardButton.SetActive(true);
-        //if (controllerButton != null) controllerButton.SetActive(false);
+        // Wait one frame for UI Input Module to initialize
+        yield return null;
         
-        StartCoroutine(ReselectAfterSwitch());
-    }
-
-    public void SwitchToController()
-    {
-        if (controllerPanel != null) controllerPanel.SetActive(true);
-        if (keyboardPanel != null) keyboardPanel.SetActive(false);
-        //if (controllerButton != null) controllerButton.SetActive(true);
-        //if (keyboardButton != null) keyboardButton.SetActive(false);
+        // Additional wait if using gamepad (Input System needs extra time)
+        if (Gamepad.current != null)
+        {
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
         
-        StartCoroutine(ReselectAfterSwitch());
-    }
-    
-    private IEnumerator ReselectAfterSwitch()
-    {
-        yield return new WaitForEndOfFrame();
-        
-        SelectFirstAvailable();
-    }
-
-    // Optional: Call this from other scripts to force reselection
-    public void ForceReselect()
-    {
-        StartCoroutine(SelectAfterFrame());
+        // Set the selected GameObject
+        if (firstSelected != null && firstSelected.activeInHierarchy && EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(firstSelected);
+        }
     }
 }

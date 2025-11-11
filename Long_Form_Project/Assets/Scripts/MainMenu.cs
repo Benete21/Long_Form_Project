@@ -9,6 +9,8 @@ public class MainMenu : MonoBehaviour
 {
     private PlayerControls controls;
     [SerializeField] private GameObject playFirst;
+    [SerializeField] private GameObject howToPlayUi;
+    [SerializeField] private GameObject mainMenuUi;
 
     void Awake()
     {
@@ -53,5 +55,29 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
         Debug.Log("Quitting");
         EventSystem.current.SetSelectedGameObject(null);
+    }
+    
+    public void OpenHowToPlay()
+    {
+        mainMenuUi.SetActive(false);
+        howToPlayUi.SetActive(true);
+
+        // Clear selection first
+        EventSystem.current.SetSelectedGameObject(null);
+
+        // Optional: if your HowToPlay script has a first selected element
+        var howToPlayFirst = howToPlayUi.GetComponentInChildren<UnityEngine.UI.Selectable>();
+        if (howToPlayFirst != null)
+            EventSystem.current.SetSelectedGameObject(howToPlayFirst.gameObject);
+    }
+
+    public void CloseHowToPlay()
+    {
+        howToPlayUi.SetActive(false);
+        mainMenuUi.SetActive(true);
+
+        // Reset selection to pause menu’s first button
+        EventSystem.current.SetSelectedGameObject(null);
+        StartCoroutine(SetSelectedNextFrame());
     }
 }
