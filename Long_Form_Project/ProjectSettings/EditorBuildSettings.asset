@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: ffab9555fe20f954ca614916c6c0bd51
-  - enabled: 0
-    path: Assets/Scenes/Langa_Current.unity
-    guid: fbf6957047cb5564aa0b990a23336ec6
+  - enabled: 1
+    path: Assets/Scenes/Intro_Scene.unity
+    guid: 61d66870edb5ad140b4c6a88e8e6753e
   - enabled: 1
     path: Assets/Scenes/Bennett_Scene.unity
     guid: 1649c08cf3ae0e341b5170128b7f4399
+  - enabled: 0
+    path: Assets/Scenes/Langa_Current.unity
+    guid: fbf6957047cb5564aa0b990a23336ec6
   - enabled: 0
     path: Assets/Scenes/Langa_Scene.unity
     guid: db38f1a0914bbcf4b80f51d662c0cce7

@@ -80,4 +80,9 @@ public class MainMenu : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         StartCoroutine(SetSelectedNextFrame());
     }
+    public void IntroNext()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1.0f;
+    }
 }
