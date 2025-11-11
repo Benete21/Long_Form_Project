@@ -3927,7 +3927,7 @@ GameObject:
   - component: {fileID: 130480061}
   - component: {fileID: 130480060}
   - component: {fileID: 130480059}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (32)
   m_TagString: Sticky
   m_Icon: {fileID: 0}
@@ -16681,6 +16681,10 @@ PrefabInstance:
       value: 1250
       objectReference: {fileID: 0}
     - target: {fileID: 1378576242226756553, guid: 8c639797cd310364a8d54518432304b9, type: 3}
+      propertyPath: sensitivity
+      value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378576242226756553, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: miniController
       value: 
       objectReference: {fileID: 1484344081}
@@ -21020,7 +21024,7 @@ GameObject:
   - component: {fileID: 953480837}
   - component: {fileID: 953480836}
   - component: {fileID: 953480835}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Melt_Wall (7)
   m_TagString: Melt
   m_Icon: {fileID: 0}
@@ -34883,7 +34887,7 @@ GameObject:
   - component: {fileID: 1573597929}
   - component: {fileID: 1573597928}
   - component: {fileID: 1573597927}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Melt_Wall (2)
   m_TagString: Melt
   m_Icon: {fileID: 0}
@@ -40006,7 +40010,7 @@ GameObject:
   - component: {fileID: 1855500862}
   - component: {fileID: 1855500861}
   - component: {fileID: 1855500860}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Melt_Wall (6)
   m_TagString: Melt
   m_Icon: {fileID: 0}
@@ -47387,7 +47391,7 @@ GameObject:
   - component: {fileID: 2133792079}
   - component: {fileID: 2133792078}
   - component: {fileID: 2133792077}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Melt_Wall (3)
   m_TagString: Melt
   m_Icon: {fileID: 0}
