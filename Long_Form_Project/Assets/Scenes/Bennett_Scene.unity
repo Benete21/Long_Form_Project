@@ -20575,7 +20575,7 @@ MonoBehaviour:
   shootGloo: {fileID: 8300000, guid: 7e26c9daf4c32483b9c2790e662d3f1b, type: 3}
   glooCollision: {fileID: 8300000, guid: ac84c7d6292c7304b984b4711f2880eb, type: 3}
   psiBulletCollision: {fileID: 8300000, guid: 416b37c170348ce4fbd4e5da54bc5523, type: 3}
-  pyrokinesis: {fileID: 8300000, guid: 447e97f44e7d0fd4eb6ddec82c319992, type: 3}
+  pyrokinesis: {fileID: 0}
   hitObstacle: {fileID: 8300000, guid: df729d213c4be44a9b55cd109f5cd4f9, type: 3}
 --- !u!4 &931859192
 Transform:
