@@ -12201,7 +12201,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Shoot Gloo at the mirror when it's rotated correctly so that the laser
-    is focused on the button.
+    is reflecting off the other mirror.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -30061,7 +30061,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Left click to shoot. Gloo can stick to platforms and walls.
+  m_text: 'Left click (RT/R2) to shoot.
+
+    Spacebar (A/X) to Jump.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -31023,8 +31025,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press 1 and the mouse scroll wheel to toggle pyrokinesis to destroy the
-    wooden obstacle.
+  m_text: Press 1 (D Pad Up) and the mouse scroll wheel (LT/L2) to toggle pyrokinesis
+    to destroy the wooden obstacle.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -34200,7 +34202,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Activate and position pyrokinesis on yourself then press the mouse scroll
-    wheel to boost yourself above the wall.
+    wheel (LT/L2) to boost yourself above the wall.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -37301,8 +37303,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Use Psi-blast to destroy the metal obstacle. Press 2 and the right mouse
-    button to activate it.
+  m_text: Press 2 (D Pad Down) to toggle Psi-blast and the right mouse button (RB/R1)
+    to shoot.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

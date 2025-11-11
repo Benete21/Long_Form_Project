@@ -138,6 +138,7 @@ public class pyrokinesis : MonoBehaviour
             
                 pyro.gameObject.SetActive(false);
         }
+
     }
 
     void TryExplode()
@@ -183,6 +184,5 @@ public class pyrokinesis : MonoBehaviour
         isActive = false;
          pyro.gameObject.SetActive (false);
 
-       
     }
 }
