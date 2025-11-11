@@ -70,12 +70,13 @@ public class PsiBlast : MonoBehaviour
 
     private void OnTogglePsiBlast(InputAction.CallbackContext context)
     {
-        canShoot = true;
-        if (psiblast != null)
-            psiblast.gameObject.SetActive(true);
+        canShoot = !canShoot;
         
+        if (psiblast != null)
+            psiblast.gameObject.SetActive(canShoot);
+    
         if (pyro != null)
-            pyro.gameObject.SetActive(false);
+            pyro.gameObject.SetActive(!canShoot);
     }
 
     void Update()
@@ -85,12 +86,16 @@ public class PsiBlast : MonoBehaviour
             canShoot = true;
             if (psiblast != null)
                 psiblast.gameObject.SetActive(true);
+            if (pyro != null)
+                pyro.gameObject.SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             canShoot = false;
             if (psiblast != null)
                 psiblast.gameObject.SetActive(false);
+            if (pyro != null)
+                pyro.gameObject.SetActive(true);
         }
 
         if (canShoot && Time.time >= nextFireTime && !isReloading)

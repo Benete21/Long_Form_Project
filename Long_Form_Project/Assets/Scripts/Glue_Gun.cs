@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class Glue_Gun : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class Glue_Gun : MonoBehaviour
 
     [Header("UI")]
     public Slider Gloo_Bar;
+    
+    [Header("Input Actions")]
+    public InputActionReference shootAction;
+    public InputActionReference reloadAction;
 
     [Header("Audio")]
     private AudioManager audioManager;
@@ -37,27 +42,69 @@ public class Glue_Gun : MonoBehaviour
             Gloo_Bar.maxValue = maxShots;
             Gloo_Bar.value = shotsRemaining;
         }
+        
+        // Enable input actions
+        if (shootAction != null)
+        {
+            shootAction.action.Enable();
+        }
+
+        if (reloadAction != null)
+        {
+            reloadAction.action.Enable();
+            reloadAction.action.performed += OnReload;
+        }
+    }
+    
+    void OnDestroy()
+    {
+        // Unsubscribe from reload action
+        if (reloadAction != null)
+        {
+            reloadAction.action.performed -= OnReload;
+        }
+    }
+    
+    void OnReload(InputAction.CallbackContext context)
+    {
+        if (!isReloading && shotsRemaining < maxShots)
+        {
+            InstantReload();
+        }
     }
 
     void Update()
     {
-        // Shooting
-        if (Input.GetButton("Fire1") && Time.time >= nextFireTime && shotsRemaining > 0 && !isReloading)
+        // Check for shooting input (works with both controller trigger and mouse)
+        bool isShooting = false;
+
+        // Check new input system
+        if (shootAction != null && shootAction.action.ReadValue<float>() > 0.1f)
+        {
+            isShooting = true;
+        }
+
+        // Fallback to old input for mouse
+        if (Input.GetButton("Fire1"))
+        {
+            isShooting = true;
+        }
+
+        // Shoot if conditions are met
+        if (isShooting && Time.time >= nextFireTime && shotsRemaining > 0 && !isReloading)
         {
             nextFireTime = Time.time + fireRate;
             Shoot();
             UpdateAmmoUI();
         }
 
-        // Instant reload when pressing R
+        // Fallback keyboard reload (R key)
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && shotsRemaining < maxShots)
         {
             InstantReload();
         }
     }
-
-
-
+    
     void Shoot()
     {
         GameObject Gloo_Bullet = Instantiate(Gloo_Bullet_Prefab, shoot_Point_Gloo.position, shoot_Point_Gloo.rotation);
