@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUi;
     [SerializeField] private GameObject pauseFirstButton;
+    [SerializeField] private GameObject howToPlayUi;
     [SerializeField] private GameObject playerPrefab;
     
     private PlayerInput playerInput;
@@ -105,6 +106,7 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUi.SetActive(false);
+        howToPlayUi.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
         
@@ -160,6 +162,30 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+    
+    public void OpenHowToPlay()
+    {
+        pauseMenuUi.SetActive(false);
+        howToPlayUi.SetActive(true);
+
+        // Clear selection first
+        EventSystem.current.SetSelectedGameObject(null);
+
+        // Optional: if your HowToPlay script has a first selected element
+        var howToPlayFirst = howToPlayUi.GetComponentInChildren<UnityEngine.UI.Selectable>();
+        if (howToPlayFirst != null)
+            EventSystem.current.SetSelectedGameObject(howToPlayFirst.gameObject);
+    }
+
+    public void CloseHowToPlay()
+    {
+        howToPlayUi.SetActive(false);
+        pauseMenuUi.SetActive(true);
+
+        // Reset selection to pause menu’s first button
+        EventSystem.current.SetSelectedGameObject(null);
+        StartCoroutine(SetSelectedNextFrame());
     }
 
 }
