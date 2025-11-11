@@ -11,14 +11,14 @@ public class Laser_Reflect_Mirror : MonoBehaviour
     public LineRenderer laser;
     public List<Vector3> laserIndices = new List<Vector3>();
     public int length;
-    public OpenDoor od;
-  //  public AudioSource breakGlass;
+   // public OpenDoor od;
+    public AudioSource breakGlass;
 
     private Shoot_Laser_Mirror shoot;
 
     public void Start()
     {
-        od = FindObjectOfType<OpenDoor>();
+        //od = FindObjectOfType<OpenDoor>();
         
     }
     public void InitializeLaser(Vector3 startPos, Vector3 direction, Material mat)
