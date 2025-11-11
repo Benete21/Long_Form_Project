@@ -88,8 +88,11 @@ public class pyrokinesis : MonoBehaviour
         isActive = !isActive;
         boomTime = isActive;
 
-        pyro.gameObject.SetActive(isActive);
-        psiBlast.gameObject.SetActive(!isActive);
+        if (pyro != null)
+            pyro.gameObject.SetActive(isActive);
+    
+        if (psiBlast != null)
+            psiBlast.gameObject.SetActive(!isActive);
 
         if (isActive)
         {
@@ -114,7 +117,7 @@ public class pyrokinesis : MonoBehaviour
             // Auto countdown logic if needed
         }
 
-        Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, placemntDistance, ground) && boomTime)
@@ -139,7 +142,7 @@ public class pyrokinesis : MonoBehaviour
 
     void TryExplode()
     {
-        Ray ray = Camera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, placemntDistance, ground))

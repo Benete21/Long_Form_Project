@@ -73,7 +73,9 @@ public class PsiBlast : MonoBehaviour
         canShoot = true;
         if (psiblast != null)
             psiblast.gameObject.SetActive(true);
-        pyro.gameObject.SetActive(false);
+        
+        if (pyro != null)
+            pyro.gameObject.SetActive(false);
     }
 
     void Update()
