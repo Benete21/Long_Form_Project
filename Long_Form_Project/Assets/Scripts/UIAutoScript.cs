@@ -86,8 +86,8 @@ public class UIAutoSelect : MonoBehaviour
     {
         if (keyboardPanel != null) keyboardPanel.SetActive(true);
         if (controllerPanel != null) controllerPanel.SetActive(false);
-        if (keyboardButton != null) keyboardButton.SetActive(true);
-        if (controllerButton != null) controllerButton.SetActive(false);
+        //if (keyboardButton != null) keyboardButton.SetActive(true);
+        //if (controllerButton != null) controllerButton.SetActive(false);
         
         StartCoroutine(ReselectAfterSwitch());
     }
@@ -96,8 +96,8 @@ public class UIAutoSelect : MonoBehaviour
     {
         if (controllerPanel != null) controllerPanel.SetActive(true);
         if (keyboardPanel != null) keyboardPanel.SetActive(false);
-        if (controllerButton != null) controllerButton.SetActive(true);
-        if (keyboardButton != null) keyboardButton.SetActive(false);
+        //if (controllerButton != null) controllerButton.SetActive(true);
+        //if (keyboardButton != null) keyboardButton.SetActive(false);
         
         StartCoroutine(ReselectAfterSwitch());
     }
