@@ -77,7 +77,7 @@ public class Laser_Reflect_Mirror : MonoBehaviour
             else if (hit.collider.CompareTag("LaserButton"))
             {
                 Destroy(hit.collider.gameObject);
-                shoot.breakGlass.Play();
+                //shoot.breakGlass.Play();
             }
             else if (hit.collider.CompareTag("Melt"))
             {

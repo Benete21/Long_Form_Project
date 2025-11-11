@@ -32591,7 +32591,7 @@ GameObject:
   - component: {fileID: 1464699361}
   m_Layer: 3
   m_Name: Cube (66)
-  m_TagString: Melt
+  m_TagString: Sticky
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
