@@ -162,7 +162,6 @@ public class PsiBlast : MonoBehaviour
 
     public void UpdateAmmoUI()
     {
-        currentAmmo = shotsRemaining;
 
         if (ammoStatusText != null)
             ammoStatusText.text = $"Ammo: {currentAmmo}/{maxAmmo}";
