@@ -17026,7 +17026,7 @@ PrefabInstance:
       objectReference: {fileID: 1484344081}
     - target: {fileID: 1378576242226756553, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: controllerLookSensitivity
-      value: 2
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2003098824697513943, guid: 8c639797cd310364a8d54518432304b9, type: 3}
       propertyPath: m_IsActive
