@@ -16,11 +16,12 @@ public class GoToEndScene : MonoBehaviour
     private Coroutine colorChangeRoutine;
 
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(ChangeColorOverTime() );
+            Debug.Log("YEah");
         }
     }
 
@@ -40,7 +41,14 @@ public class GoToEndScene : MonoBehaviour
         }
 
         panelImage.color = targetColor;
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("ENDSCENE");
     }
+
+
+   
+
 }
+
+
+
 

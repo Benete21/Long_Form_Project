@@ -134,6 +134,7 @@ public class PsiBlast : MonoBehaviour
             rb.velocity = direction * projectileSpeed;
 
         currentAmmo--;
+        shotsRemaining--;
         UpdateAmmoUI();
 
         audioManager.PlaySFX(audioManager.psiBulletCollision);
@@ -161,11 +162,12 @@ public class PsiBlast : MonoBehaviour
 
     public void UpdateAmmoUI()
     {
+
         if (ammoStatusText != null)
             ammoStatusText.text = $"Ammo: {currentAmmo}/{maxAmmo}";
 
         if (Ammofill != null)
-            Ammofill.value = (float)currentAmmo / maxAmmo;
+            Ammofill.value = currentAmmo;
     }
 
 

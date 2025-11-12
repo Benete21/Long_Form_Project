@@ -116,7 +116,7 @@ public class pyrokinesis : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         countdown -= Time.deltaTime;
 
@@ -163,11 +163,11 @@ public class pyrokinesis : MonoBehaviour
     void Explode(RaycastHit hit)
     {
         Instantiate(explosionEffect, hit.point, hit.transform.rotation);
-
+        explosionSound.Play();
         ParticleSystem explosion = Instantiate(explosionEffectPrefab, (hit.point + new Vector3(0f,1f,0f)), hit.transform.rotation);
 
         explosion.Play(); 
-        explosionSound.Play();
+        
 
      
         Collider[] colliders = Physics.OverlapSphere(hit.point, radius);
