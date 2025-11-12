@@ -29,8 +29,8 @@ public class Laser_Reflect_Mirror : MonoBehaviour
             laserObj = new GameObject("LaserLine");
             laser = laserObj.AddComponent<LineRenderer>();
 
-            laser.startWidth = 0.1f;
-            laser.endWidth = 0.1f;
+            laser.startWidth = 0.3f;
+            laser.endWidth = 0.3f;
             laser.material = mat;
             laser.startColor = Color.green;
             laser.endColor = Color.green;
