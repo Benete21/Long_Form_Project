@@ -85,10 +85,10 @@ public class Glue_Gun : MonoBehaviour
         }
 
         // Fallback to old input for mouse
-        if (Input.GetButton("Fire1"))
-        {
-            isShooting = true;
-        }
+        //if (Input.GetButton("Fire1"))
+        //{
+            //isShooting = true;
+        //}
 
         // Shoot if conditions are met
         if (isShooting && Time.time >= nextFireTime && shotsRemaining > 0 && !isReloading)
