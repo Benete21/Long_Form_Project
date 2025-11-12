@@ -114,6 +114,8 @@ public class PsiBlast : MonoBehaviour
                 nextFireTime = Time.time + fireRate;
             }
         }
+
+
     }
 
     void Shoot()
@@ -157,18 +159,15 @@ public class PsiBlast : MonoBehaviour
         UpdateAmmoUI();
     }
 
-    void UpdateAmmoUI()
+    public void UpdateAmmoUI()
     {
         if (ammoStatusText != null)
-        {
             ammoStatusText.text = $"Ammo: {currentAmmo}/{maxAmmo}";
-        }
-        if( Ammofill != null)
-        {
-           Ammofill.value = shotsRemaining;
-        }
+
+        if (Ammofill != null)
+            Ammofill.value = (float)currentAmmo / maxAmmo;
     }
 
 
-   
+
 }

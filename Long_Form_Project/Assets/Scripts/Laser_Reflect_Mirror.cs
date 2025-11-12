@@ -12,14 +12,14 @@ public class Laser_Reflect_Mirror : MonoBehaviour
     public List<Vector3> laserIndices = new List<Vector3>();
     public int length;
    // public OpenDoor od;
-    public AudioSource breakGlass;
+   // public AudioSource breakGlass;
 
     private Shoot_Laser_Mirror shoot;
 
     public void Start()
     {
         //od = FindObjectOfType<OpenDoor>();
-        
+       shoot = GetComponent<Shoot_Laser_Mirror>();
     }
     public void InitializeLaser(Vector3 startPos, Vector3 direction, Material mat)
     {
@@ -76,12 +76,14 @@ public class Laser_Reflect_Mirror : MonoBehaviour
             }
             else if (hit.collider.CompareTag("LaserButton"))
             {
+                
                 Destroy(hit.collider.gameObject);
-                //shoot.breakGlass.Play();
+               shoot.breakGlass.Play();
             }
             else if (hit.collider.CompareTag("Melt"))
-            {
+            { 
                 Destroy(hit.collider.gameObject);
+                shoot.breakGlass.Play();
             }
         }
         else

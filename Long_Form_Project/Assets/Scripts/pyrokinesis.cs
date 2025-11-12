@@ -21,6 +21,9 @@ public class pyrokinesis : MonoBehaviour
     public float radius;
     public GameObject fractured;
     public GameObject pyroBall;
+
+    public AudioSource explosionSound;
+    public AudioSource pyroSiz;
     #endregion
 
     #region Placement
@@ -84,19 +87,24 @@ public class pyrokinesis : MonoBehaviour
 
     private void OnTogglePyrokinesis(InputAction.CallbackContext context)
     {
-        
         isActive = !isActive;
         boomTime = isActive;
 
         if (pyro != null)
             pyro.gameObject.SetActive(isActive);
-    
-        if (psiBlast != null)
-            psiBlast.gameObject.SetActive(!isActive);
 
         if (isActive)
         {
-            audioManager.PlaySFX(audioManager.pyrokinesis);
+            pyroSiz.Play();
+            if (audioManager != null)
+                audioManager.PlaySFX(audioManager.pyrokinesis);
+        }
+        else
+        {
+            pyroSiz.Stop();
+
+            if (psiBlast != null)
+                psiBlast.gameObject.SetActive(!isActive);
         }
     }
 
@@ -158,7 +166,8 @@ public class pyrokinesis : MonoBehaviour
 
         ParticleSystem explosion = Instantiate(explosionEffectPrefab, (hit.point + new Vector3(0f,1f,0f)), hit.transform.rotation);
 
-        explosion.Play();
+        explosion.Play(); 
+        explosionSound.Play();
 
      
         Collider[] colliders = Physics.OverlapSphere(hit.point, radius);
@@ -168,7 +177,7 @@ public class pyrokinesis : MonoBehaviour
             if (rb != null && boomTime)
             {
                 rb.AddExplosionForce(explosionForce, hit.point, radius);
-
+               
               
                
             }
